@@ -931,11 +931,11 @@ Note:
 @title[Lab 5: Build Ovmf for IA32]
 <p align="right"><span class="gold" >Lab 5: Build Ovmf for IA32</span></p>
 <br>
-<span style="font-size:0.8em">Add `SampleApp/SampleApp.inf` to the OvmfPkgIa32.dsc (using IA32 )  at the end of the 
-   `[Components]` section in the OvmfPkgIa32.dsc file.</span><br>
+<span style="font-size:0.8em">Open `~/src/edk2/OvmfPkg/OvmfPkgIa32.dsc` and add the application to the  (using IA32 )  at the end of the 
+   `[Components]` section.</span><br>
 ```php
   [Components]
-   #  add at the end of the components section
+   #  add at the end of the components section OvmfPkgIa32.dsc
     SampleApp/SampleApp.inf
 ```
 <span style="font-size:0.8em">Build OVMF for IA32 :  </span>
@@ -948,16 +948,7 @@ Note:
 bash$ cd ~/run-ovmf/
 bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/FV/OVMF.fd  bios.bin
 ```
-<span style="font-size:0.8em">Copy the output of SampleApp to the `hda-contents` directory: </span>
-```
-bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  ~/run-ovmf/hda-contents/
-```
-<span style="font-size:0.8em">The following will be in the `~/run-ovmf/hda-contents/`</span>
-```
-   SampleApp.efi
-   SampleApp.debug
-   SampleApp (Directory)
-```
+
 
 Note:
 - lab 5.2
@@ -968,7 +959,8 @@ Note:
 <br>
 <span style="font-size:0.8em">Copy the output of SampleApp to the `hda-contents` directory: </span>
 ```
-bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  ~/run-ovmf/hda-contents/
+bash$ cd ~/run-ovmf/hda-contents
+bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  .
 ```
 <span style="font-size:0.8em">The following will be in the `~/run-ovmf/hda-contents/`</span>
 ```
@@ -976,6 +968,14 @@ bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  ~/run-ovmf/hda-con
    SampleApp.debug
    SampleApp (Directory)
 ```
+<span style="font-size:0.7em" >Open a Terminal(1) Prompt and Invoke Qemu</span>
+```
+  bash$ cd ~/run-ovmf
+  bash$ . RunQemu.sh
+```
+<span style="font-size:0.7em" >Run the application from the shell</span><br>
+<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
+
 
 Note:
 - lab 5.3
@@ -985,12 +985,10 @@ Note:
 <p align="right"><span class="gold" >Lab 5: Run Qemu</span></p>
 <br>
 <span style="font-size:0.7em" >Open a Terminal(1) Prompt and Invoke Qemu</span>
-<pre>
 ```
   bash$ cd ~/run-ovmf
   bash$ . RunQemu.sh
 ```
-</pre>
 <span style="font-size:0.7em" >Run the application from the shell</span><br>
 <span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
 
@@ -1011,17 +1009,55 @@ Note:
  Loading driver at 0x00006AEE000 EntryPoint=0x00006AEE756 SampleApp.efi
  InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6F0FF10
 ```
-<span style="font-size:0.7em" >Add a DEBUG statement to your application to get the entry point of your code.</span>
-```
-  DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
-```
-<span style="font-size:0.7em" >When you print out the debug.log the exact entry point for your code.</span>
 
 Note:
 - lab 5.5
 
+---
+@title[Lab 5: Add a Debug Print]
+<p align="right"><span class="gold" >Lab 5: Add a Debug Print</span></p>
+<br>
+<span style="font-size:0.7em" >Add a DEBUG statement to your application to get the entry point of your code.</span>
+```
+  DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
+```
+<span style="font-size:0.7em" >When you print out the debug.log again, the exact entry point for your code will show.</span>
+```
+  My Entry point: 0x06AEE496 
+```
 
+Note:
+- lab 5.6
 
+---
+@title[Lab 5: Invoking GDB]
+<p align="right"><span class="gold" >Lab 5: Invoking GDB</span></p>
+<br>
+<span style="font-size:0.7em" >In the terminal(2) prompt Invoke GDB</span><span style="font-size:0.5em" >(note - at first there will be nothing in the source window)</span>
+```
+ bash$ cd ~/run-ovmf/hda-contents
+ bash$ gdb --tui 
+```
+<span style="font-size:0.7em" >Load your UEFI Application SampleApp.efi with the file command.</span>
+```
+ (gdb) file SampleApp.efi
+ Reading symbols from SampleApp.efi...(no debugging symbols found)...done. 
+```
+<span style="font-size:0.7em" >Check where GDB has for .text and .data offsets with info files command.</span>
+```
+ (gdb) info files
+ Symbols from "/home/u-mypc/run-ovmf/hda-contents/SampleApp.efi".
+ Local exec file:
+        `/home/u-mypc/run-ovmf/hda-contents/SampleApp.efi',
+        file type pei-i386.
+        Entry point: 0x756
+        0x00000240 - 0x000028c0 is .text
+        0x000028c0 - 0x00002980 is .data
+        0x00002980 - 0x00002b00 is .reloc
+```
+
+Note:
+- Lab 5.7
 
 
 
