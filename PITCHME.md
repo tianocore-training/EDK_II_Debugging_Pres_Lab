@@ -420,9 +420,8 @@ In this lab, you’ll learn how to use PCD values to change debugging capabiliti
 @title[Lab 2: Change PCDs for SampleApp]
 <p align="right"><span class="gold" >Lab 1: Change PCDs for SampleApp</span></p>
 <br>
-<ul>
-  <li><span style="font-size:0.8em" >Open `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span></li><br>
-  <li><span style="font-size:0.8em" >Add and replace the following for the `SampleApp/SampleApp.inf` Statement</span></li>
+<span style="font-size:0.8em" >Open `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
+<span style="font-size:0.8em" >Add and replace the following for the `SampleApp/SampleApp.inf` Statement</span><br>
 <pre>
 ```
   SampleApp/SampleApp.inf {
@@ -432,22 +431,20 @@ In this lab, you’ll learn how to use PCD values to change debugging capabiliti
  }
 ```
 </pre>
-  <li><span style="font-size:0.8em" >Save and close `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span></li>
-  <li><span style="font-size:0.8em" >Build SampleApp </span></li>
+<span style="font-size:0.8em" >Save and close `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
+<span style="font-size:0.8em" >Build SampleApp </span>
 <pre>
 ```
    bash$ build
 ```
 </pre>
-   <li><span style="font-size:0.8em" >Copy  SampleApp.efi to hda-contents</span></li>
+<span style="font-size:0.8em" >Copy  SampleApp.efi to hda-contents</span>
 <pre>
 ```
  bash$ cd ~/run-ovmf/hda-contents
  bash$ cp ~/src/edk2/Build/OvmfX64/DEBUG_GCC5/X64/SampleApp.efi .
 ```
 </pre>
-
-</ul>
 
 Note:
 
