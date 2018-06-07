@@ -910,7 +910,7 @@ Note:
 <span style="font-size:0.8em" >Edit  the Linux shell script to run the QEMU from the run-ovmf directory and add  the option for GDB “-s” to 
 generate a symbol file and also use IA32 instead of x86_64</span><br>
 
-<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;bast$ gedit RunQemu.sh</span></span><br>
+<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;bash$ gedit RunQemu.sh</span></span><br>
 ```
   qemu-system-i386 -s  -pflash bios.bin -hda fat:rw:hda-contents -net none -debugcon file:debug.log -global isa-debugcon.iobase=0x402 
 ```
@@ -927,10 +927,20 @@ Note:
 ---
 @title[Lab 5: Build Ovmf for IA32]
 <p align="right"><span class="gold" >Lab 5: Build Ovmf for IA32</span></p>
-1. Add `SampleApp/SampleApp.inf` to the OvmfPkgIa32.dsc (using IA32 )  at the end of the `[Components]` section in the OvmfPkgIa32.dsc file.
-2. Build OVMF for IA32 :  ` bash$ build -a IA32 -p OvmfPkg/OvmfPkgIa32.dsc `
-3. Copy the the OVMF.fd to the run-ovmf directory renaming it bios.bin: `bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/FV/OVMF.fd ~/run-ovmf/bios.bin`
-4. Copy the output of SampleApp to the `hda-contents` directory: `cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp ~/run-ovmf/hda-contents/.`
+<span style="font-size:0.8em">Add `SampleApp/SampleApp.inf` to the OvmfPkgIa32.dsc (using IA32 )  at the end of the 
+   `[Components]` section in the OvmfPkgIa32.dsc file.</span><br>
+<span style="font-size:0.8em">Build OVMF for IA32 :  
+    </span> <span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;bash$ build -a IA32 -p OvmfPkg/OvmfPkgIa32.dsc</span></span><br>
+
+<span style="font-size:0.8em">Copy the the OVMF.fd to the run-ovmf directory renaming it bios.bin: </span>
+```
+bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/FV/OVMF.fd ~/run-ovmf/bios.bin
+```
+<span style="font-size:0.8em">Copy the output of SampleApp to the `hda-contents` directory: </span>
+```
+cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  ~/run-ovmf/hda-contents/
+```
+<span style="font-size:0.8em">The following will be in the `~/run-ovmf/hda-contents/`</span>
 ```
    SampleApp.efi
    SampleApp.debug
