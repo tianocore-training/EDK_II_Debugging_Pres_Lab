@@ -99,7 +99,7 @@ Note:
 <br>
 @ul[no-bullet]
 - <span style="font-size:01.0em" >&nbsp;<span style="background-color: #fdb819"><b>&nbsp;&nbsp;`Debug` and `Assert` macros in code &nbsp;&nbsp;</b></span></span></p><br><br>
-- <span style="font-size:01.0em" >&nbsp;<span style="background-color: #92d050">&nbsp;&nbsp;<b>Enable/disable when compiled ("target.txt")</b>&nbsp;&nbsp;</span></span><br><br>
+- <span style="font-size:01.0em" >&nbsp;<span style="background-color: #92d050">&nbsp;&nbsp;<b>Enable/disable when compiled ("target.txt")</b>&nbsp;&nbsp;</span></span><br><br><br>
 - <span style="font-size:01.0em" >&nbsp;<span style="background-color: #7030a0">&nbsp;&nbsp;<b>Connects a Host to capture debug messages &nbsp;</b>&nbsp;&nbsp;</span></span>
 @ulend
 
