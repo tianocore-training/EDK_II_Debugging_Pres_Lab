@@ -23,6 +23,7 @@ html:-moz-full-screen-ancestor {
   color: #BF5122;
     text-align: center; 
   text-align: top;
+    font-weight: bold;
 }
 
 .gold {

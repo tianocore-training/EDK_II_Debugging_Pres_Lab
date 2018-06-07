@@ -631,8 +631,7 @@ Note:
 ---?image=/assets/images/slides/Slide50.JPG
 @title[DebugLib Instances (1)]
 <br>
-<p align="center"><span class="gold" ><b>`DebugLib` Instances (1)</b></span></p>
-<br>
+<p align="left"><span class="gold" ><b>`DebugLib` Instances (1)</b></span></p>
 <br>
 <br>
 <ul>
@@ -653,6 +652,107 @@ Note:
 - Every time that you type DEBUG, it prints the information to the serial port such that if there is another PC capturing that information out the serial port, it allows easy viewing of the debug information. 
 - This is good because it works early on in the platform. You can run very early and get a lot of debug information. 
 - At this point the only serial port library instance that is in the public domain or open source is the DUET version 
+
+
+---?image=/assets/images/slides/Slide52.JPG
+@title[DebugLib Instances (2)]
+<br>
+<p align="left"><span class="gold" ><b>`DebugLib` Instances (2)</b></span></p>
+<br>
+<br>
+<br>
+<ul>
+  <li><span style="font-size:0.9em">Instances of `DebugLib` (for apps and drivers)</span></li><br>
+  <li><span style="font-size:0.9em">Send all debug output to console/debug console</span></li>
+</ul>
+
+
+Note:
+- UefiDebugLibConOut   UefiDebugLibStdErr
+- Instances of DebugLib (for Apps and Drivers)
+- Send all debug output out to console/debug console
+- This allows for viewing of debug information
+- Make sure that the console is visible
+
+
+---?image=/assets/images/slides/Slide54.JPG
+@title[DebugLib Instances (3)]
+<br>
+<p align="left"><span class="gold" ><b>`DebugLib` Instances (3)</b></span></p>
+<br>
+<br>
+<ul>
+  <li><span style="font-size:0.9em">Sends ASCII String  specified by  Description Value to the `ReportStatusCode()`  </span></li>
+  <li><span style="font-size:0.9em">May also use the `SerialPortLib` class to send debug output to serial port</span></li>
+  <li><span style="font-size:0.9em">`BaseDebugLibNull`  - Resolves references </span></li>
+</ul>
+<br>
+<span style="font-size:0.7em"><font color="yellow">Default for most platforms</font></span>
+
+
+
+Note:
+- So there are a total of 5 open source debug lib instances
+- The ones we did not cover are “DebugLibNull” – does nothing and 
+
+- “PeiDxeDebugLibReportStatusCode “  is a form of  “DebugLibReportStatusCode”  that wraps into the report status code library the same way that the serial port one does and may send ASCII String  specified by Description Value that is sent to ReportStatusCode() function
+
+
+
+- So there may be other instances in your workspace. It is easy to develop a new  library instance. There is no requirement that someone tell us that they’ve done it. 
+- So what you want to do is search for the library name equals in the INF file.
+- Example search the INF files inyour workspace for the string “LIBRARY_CLASS                  = DebugLib” 
+
+- the ASCII string specified by Description is 
+  also passed to the handler that displays the POST card value.  Some 
+  implementations of this library function may perform I/O operations directly 
+  to a POST card device.  Other implementations may send Value to ReportStatusCode(), 
+
+
+---?image=/assets/images/slides/Slide56.JPG
+@title[Changing Library Instances ]
+<p align="right"><span class="gold" >Changing Library Instances </span></p>
+
+Note:
+- Change common library instances in the platform DSC by module type
+<pre>
+  [LibraryClasses.common.IA32]
+    DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
+</pre>
+- Change a single module’s library instance in the platform DSC
+<pre>
+  MyPath/MyModule.inf {
+    <LibraryClasses>
+     DebugLib|MdePkg/Library/BaseDebugLibSerialPort.inf
+  }
+</pre>
+- another Note: Use a different debugging library instance only on the module in question (managing size changes)
+
+
+
+
++++?image=/assets/images/slides/Slide57.JPG
+<!-- .slide: data-background-transition="none" -->
+<!-- .slide: data-transition="none" -->
+@title[Changing Library Instances 02 ]
+<p align="right"><span class="gold" >Changing Library Instances </span></p>
+
+Note:
+
+Note:
+- Change common library instances in the platform DSC by module type
+<pre>
+  [LibraryClasses.common.IA32]
+    DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
+</pre>
+- Change a single module’s library instance in the platform DSC
+<pre>
+  MyPath/MyModule.inf {
+    <LibraryClasses>
+     DebugLib|MdePkg/Library/BaseDebugLibSerialPort.inf
+  }
+</pre>
+- another Note: Use a different debugging library instance only on the module in question (managing size changes)
 
 
 
