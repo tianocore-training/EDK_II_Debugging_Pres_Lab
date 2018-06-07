@@ -687,8 +687,7 @@ Note:
   <li><span style="font-size:0.9em">`BaseDebugLibNull`  - Resolves references </span></li>
 </ul>
 <br>
-<br>
-<span style="font-size:0.9em"><font color="blue">Default for most platforms</font></span>
+<p align="center"><span style="font-size:0.9em"><font color="blue">Default for most platforms</font></span></p>
 
 
 
@@ -773,7 +772,7 @@ Note:
 
 ---
 @title[Lab 3: Using Library Instances for Debugging]
-<p align="right"><span class="gold" >Lab 3: Using Library Instances for Debuggingp</span></p>
+<p align="right"><span class="gold" >Lab 3: Using Library Instances for Debugging</span></p>
 <br>
 <span style="font-size:0.7em" >Open `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
 <span style="font-size:0.7em" >Replace `SampleApp/SampleApp.inf { . . .}` with the following:</span><br>
@@ -889,6 +888,56 @@ Note:
 
 Note:
 
+---?image=/assets/images/slides/Slide_LabSec.JPG
+@title[Lab 5: Debugging EDK II with GDB]
+<br>
+<br>
+<p align="Left"><span class="gold" >Lab 5: Debugging EDK II with GDB</span></p>
+<br>
+<div class="left1">
+<span style="font-size:0.8em" >In this lab,  you’ll learn how setup the Linux GDB to use with EDK II and Qemu </span>
+</div>
+<div class="right1">
+<span style="font-size:0.8em" >&nbsp;  </span>
+</div>
+
+Note:
+
+---
+@title[Lab 5: Update the Qemu Script]
+<p align="right"><span class="gold" >Lab 5: Update the Qemu Script</span></p>
+
+<span style="font-size:0.8em" >Edit  the Linux shell script to run the QEMU from the run-ovmf directory and add  the option for GDB “-s” to 
+generate a symbol file and also use IA32 instead of x86_64</span><br>
+
+<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;bast$ gedit RunQemu.sh</span></span><br>
+```
+  qemu-system-i386 -s  -pflash bios.bin -hda fat:rw:hda-contents -net none -debugcon file:debug.log -global isa-debugcon.iobase=0x402 
+```
+<span style="font-size:0.8em" >Save and Exit</span>
+
+Note:
+- Lab 5.1
+- add the following to the script 
+<pre>
+  qemu-system-i386 -s -pflash bios.bin -hda fat:rw:hda-contents -net none     -debugcon file:debug.log -global isa-debugcon.iobase=0x402  -serial file:serial.log
+</pre>
+
+
+---
+@title[Lab 5: Build Ovmf for IA32]
+<p align="right"><span class="gold" >Lab 5: Build Ovmf for IA32</span></p>
+1. Add `SampleApp/SampleApp.inf` to the OvmfPkgIa32.dsc (using IA32 )  at the end of the `[Components]` section in the OvmfPkgIa32.dsc file.
+2. Build OVMF for IA32 :  ` bash$ build -a IA32 -p OvmfPkg/OvmfPkgIa32.dsc `
+3. Copy the the OVMF.fd to the run-ovmf directory renaming it bios.bin: `bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/FV/OVMF.fd ~/run-ovmf/bios.bin`
+4. Copy the output of SampleApp to the `hda-contents` directory: `cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp ~/run-ovmf/hda-contents/.`
+```
+   SampleApp.efi
+   SampleApp.debug
+   SampleApp (Directory)
+```
+
+Note:
 
 
 
