@@ -980,28 +980,15 @@ bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  .
 Note:
 - lab 5.3
 
----
-@title[Lab 5: Run Qemu ]
-<p align="right"><span class="gold" >Lab 5: Run Qemu</span></p>
-<br>
-<span style="font-size:0.7em" >Open a Terminal(1) Prompt and Invoke Qemu</span>
-```
-  bash$ cd ~/run-ovmf
-  bash$ . RunQemu.sh
-```
-<span style="font-size:0.7em" >Run the application from the shell</span><br>
-<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
-
-Note:
-- lab 5.4
 
 ---
 @title[Lab 5: Check debug.log ]
 <p align="right"><span class="gold" >Lab 5: Check debug.log</span></p>
 <br>
-<span style="font-size:0.7em" >Open <b>another</b> Terminal(2) Prompt in the `run-ovmf` directory and check out the `debug.log` file.</span>
+<span style="font-size:0.7em" >Open <font color="yellow"><b>another</b></font> Terminal(2) Prompt in the `run-ovmf` directory and check out the `debug.log` file.</span>
 ```
-  bash$ cat debug.log
+   bash$ cd ~/run-ovmf
+   bash$ cat debug.log
 ```
 <span style="font-size:0.7em" >See that Loading driver at `0x00006AEE000` is the memory location where your UEFI Application is loaded. </span>
 ```
@@ -1011,7 +998,7 @@ Note:
 ```
 
 Note:
-- lab 5.5
+- lab 5.4
 
 ---
 @title[Lab 5: Add a Debug Print]
@@ -1027,7 +1014,7 @@ Note:
 ```
 
 Note:
-- lab 5.6
+- lab 5.5
 
 ---
 @title[Lab 5: Invoking GDB]
@@ -1038,12 +1025,12 @@ Note:
  bash$ cd ~/run-ovmf/hda-contents
  bash$ gdb --tui 
 ```
-<span style="font-size:0.7em" >Load your UEFI Application SampleApp.efi with the file command.</span>
+<span style="font-size:0.7em" >Load your UEFI Application SampleApp.efi with the `file` command.</span>
 ```
  (gdb) file SampleApp.efi
  Reading symbols from SampleApp.efi...(no debugging symbols found)...done. 
 ```
-<span style="font-size:0.7em" >Check where GDB has for .text and .data offsets with info files command.</span>
+<span style="font-size:0.7em" >Check where GDB has for .text and .data offsets with `info files` command.</span>
 ```
  (gdb) info files
  Symbols from "/home/u-mypc/run-ovmf/hda-contents/SampleApp.efi".
@@ -1057,7 +1044,29 @@ Note:
 ```
 
 Note:
+- Lab 5.6
+
+
+
+---
+@title[Lab 5: Calculate Addresses]
+<p align="right"><span class="gold" >Lab 5: Calculate Addresses</span></p>
+<br>
+<span style="font-size:0.7em" >We need to calculate our addresses for .text and .data section.</span><span style="font-size:0.5em" > The application is loaded under `0x00006AEE000` (loading driver point - <b>NOT</b> Entrypoint) and we know text and data offsets.</span>
+```
+ text = 0x00006AEE000  +  0x00000240 = 0x06AEE240
+ data = 0x00006AEE000  +  0x00000240 + 0x000028c0 = 0x06AF0B00 
+```
+<span style="font-size:0.7em" >Unload the .efi file</span>
+```
+(gdb) file
+No executable file now.
+No symbol file now.
+```
+
+Note:
 - Lab 5.7
+
 
 
 
