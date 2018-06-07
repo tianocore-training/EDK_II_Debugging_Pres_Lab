@@ -51,7 +51,7 @@ Note:
  <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Use `DEBUG` instead of `Print` function</span> </li>
  <li>@fa[certificate gp-bullet-gold]<span style="font-size:0.9em">&nbsp;&nbsp;Using PCDs to Configure `DebugLib` </span> </li>
  <li>@fa[certificate gp-bullet-ltgreen]<span style="font-size:0.9em">&nbsp;&nbsp;Change Compiler & Linker Flags for debugging</span></li>
- <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Change the `DebugLib` instance to modify the debug output</span> </li>
+ <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Change the `DebugLib` instance to modify the debug<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output</span> </li>
 </ul>
 
 ---?image=assets/images/binary-strings-black2.jpg
@@ -64,12 +64,14 @@ Note:
 ---?image=/assets/images/slides/Slide4.JPG
 @title[Debug Methods]
 ### <p align="center"><span class="gold" ><b>Debug Methods</b></span></p>
+<br>
+<br>
 <div class="left1">
 @ul[no-bullet]
-- <span style="font-size:0.9em" ><font color="white">DEBUG and ASSERT macros in EDK II code </font></span>
-- <span style="font-size:0.9em" ><font color="cyan">DEBUG instead of Print functions </font></span>
-- <span style="font-size:0.9em" ><font color="white">Software/hardware debuggers </font></span>
-- <span style="font-size:0.9em" ><font color="cyan">Shell Commands to test capabilities </font></span>
+- <span style="font-size:0.9em" ><font color="white">`DEBUG` and `ASSERT` macros in EDK II code </font></span><br>
+- <span style="font-size:0.9em" ><font color="cyan">`DEBUG` instead of `Print` functions </font></span><br>
+- <span style="font-size:0.9em" ><font color="white">Software/hardware debuggers </font></span><br>
+- <span style="font-size:0.9em" ><font color="cyan">Shell commands to test capabilities for simple debugging </font></span>
 @ulend
 </div>
 <div class="right1">
@@ -99,9 +101,8 @@ Note:
 - <span style="font-size:01.1em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #fdb819">
   <b>&nbsp;&nbsp;&nbsp;&nbsp;`Debug` and `Assert` macros in code &nbsp;&nbsp;</b></span></span></p><br><br>
-- <span style="font-size:01.1em" >&nbsp;<span style="background-color: #92d050">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Enable/disable when compiled (`target.txt`)</b>&nbsp;&nbsp;&nbsp;</span></span><br><br>
-- <span style="font-size:01.1em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #7030a0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-  <b>Connects a Host to capture debug messages &nbsp;</b>&nbsp;&nbsp;</span></span>
+- <span style="font-size:01.1em" >&nbsp;<span style="background-color: #92d050">&nbsp;&nbsp;<b>Enable/disable when compiled (`target.txt`)</b>&nbsp;&nbsp;</span></span><br><br>
+- <span style="font-size:01.1em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #7030a0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Connects a Host to capture debug messages &nbsp;</b>&nbsp;&nbsp;</span></span>
 @ulend
 
 Note:
@@ -216,7 +217,7 @@ Note:
 
 
 
----?image=/assets/images/slides/Slide13.JPG
+---?image=/assets/images/slides/Slide15.JPG
 <!-- .slide: data-transition="none" -->
 @title[Changing PCD Values ]
 <p align="right"><span class="gold" >Changing PCD Values</span></p>
@@ -226,7 +227,7 @@ Note:
 - Use different PCD values only on the module being debugged
 - Minimize message output and minimize size increase
 
-+++?image=/assets/images/slides/Slide14.JPG
++++?image=/assets/images/slides/Slide16.JPG
 <!-- .slide: data-background-transition="none" -->
 <!-- .slide: data-transition="none" -->
 @title[Changing PCD Values 02 ]
@@ -271,7 +272,7 @@ This lab uses code from a previous exercise as a starting point (refer to  Writi
 
 ---
 @title[Lab 1: Catch Up SampleApp]
-<p align="Left"><span class="gold" >Lab 1: Catch up from previous lab</span></p>
+<p align="right"><span class="gold" >Lab 1: Catch up from previous lab</span></p>
 <span style="font-size:0.8em" >Skip if Lab <a href="https://gitpitch.com/Laurie0131/Writing_UEFI_App_Lab/master#/">Writing UEFI App Lab</a> completed</span>
 <ul>
    <li><span style="font-size:0.8em" >Perform <a href="https://gitpitch.com/Laurie0131/Platform_Build_LAB/master#/">Lab Setup</a> from previous Labs  </span></li>
@@ -288,12 +289,15 @@ This lab uses code from a previous exercise as a starting point (refer to  Writi
    <li><span style="font-size:0.8em" >Save and close the file `~src/edk2/OvmfPkg/OvmfPkgX64.dsc`  </span></li>
 </ul>
 
+Note:
+
 ---
 @title[Lab 1: Add debug statments SampleApp]
-<p align="Left"><span class="gold" >Lab 1: Add debug statments to SampleApp</span></p>
+<p align="right"><span class="gold" >Lab 1: Add debug statments to SampleApp</span></p>
+<br>
 <ul>
-  <li><span style="font-size:0.8em" >Open a Terminal Command Prompt (Cnt-Alt-T) and type cd ~/src/edk2<br>&nbsp;&nbsp;&nbsp;<span style="background-color: #101010">`bash$  .  edksetup`</span> </span></li>
-  <li><span style="font-size:0.8em" >Open `~/src/edk2/SampleApp/SampleApp.c` </span></li>
+  <li><span style="font-size:0.8em" >Open a Terminal Command Prompt (Cnt-Alt-T) and type cd ~/src/edk2<br></span>&nbsp;&nbsp;&nbsp;<span style="font-size:0.6em" ><span style="background-color: #101010">&nbsp;` bash$  .  edksetup `&nbsp;</span> </span></li><br>
+  <li><span style="font-size:0.8em" >Open `~/src/edk2/SampleApp/SampleApp.c` </span></li><br>
   <li><span style="font-size:0.8em" >Add the following to the include statements at the top of the file after below the last “include” statement: </span></li>
 <pre>
 ```
@@ -304,8 +308,8 @@ This lab uses code from a previous exercise as a starting point (refer to  Writi
 
 ---
 @title[Lab 1: Add debug statments SampleApp 02]
-<p align="Left"><span class="gold" >Lab 1: Add debug statments to SampleApp</span></p>
-<span style="font-size:0.7em" >Locate the `UefiMain` function. Then copy and paste the following code after the “`EFI_INPUT_KEY  KEY;`” statement: and before the first `Print` statement </span>
+<p align="right"><span class="gold" >Lab 1: Add debug statments to SampleApp</span></p>
+<span style="font-size:0.7em" >Locate the `UefiMain` function. Then copy and paste the following code after the <span style="background-color: #101010">&nbsp;“`EFI_INPUT_KEY  KEY;`”</span> statement: and before the first <span style="background-color: #101010">&nbsp;`Print()` </span>statement </span>
 ```c
 DEBUG ((0xffffffff, "\n\nUEFI Base Training DEBUG DEMO\n") );
 DEBUG ((0xffffffff, "0xffffffff USING DEBUG ALL Mask Bits Set\n") );
@@ -367,7 +371,7 @@ Note:
 @title[Lab 1: Run Qemu Script]
 <p align="right"><span class="gold" >Lab 1: Run the Qemu Script</span></p>
 <br>
-<div class="left1">
+<div class="left">
 <span style="font-size:0.7em" >Test by Invoking Qemu</span>
 <pre>
 ```
@@ -375,18 +379,20 @@ Note:
   bash$ . RunQemu.sh
 ```
 </pre>
-<span style="font-size:0.7em" >Run the application from the shell, type &nbsp;<span style="background-color: #101010"><font color="yellow">`Shell> `</font>`SampleApp`</span></span><br>
+<span style="font-size:0.7em" >Run the application from the shell, type </span><br>
+<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
 <span style="font-size:0.7em" >Print out the contents of the Debug.log file </span>
 <pre>
 ```
   bash$ cat Debug.log
 ```
+</pre>
 <br>
 <span style="font-size:0.8em" ><font color="yellow">Exit QEMU</font></span>
 
 </pre>
 </div>
-<div class="right1">
+<div class="right">
 <span style="font-size:0.8em" >&nbsp;  </span>
 </div>
 
@@ -419,7 +425,7 @@ In this lab, you’ll learn how to use PCD values to change debugging capabiliti
  <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Use `DEBUG` instead of `Print` function</span> </li>
  <li>@fa[certificate gp-bullet-gold]<span style="font-size:0.9em">&nbsp;&nbsp;Using PCDs to Configure `DebugLib` </span> </li>
  <li>@fa[certificate gp-bullet-ltgreen]<span style="font-size:0.9em">&nbsp;&nbsp;Change Compiler & Linker Flags for debugging</span></li>
- <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Change the `DebugLib` instance to modify the debug output</span> </li>
+ <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Change the `DebugLib` instance to modify the debug<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output</span> </li>
 </ul>
 
 ---?image=assets/images/gitpitch-audience.jpg
