@@ -65,12 +65,12 @@ Note:
 @title[Debug Methods]
 ### <p align="center"><span class="gold" ><b>Debug Methods</b></span></p>
 <br>
-<br>
+
 <div class="left1">
 @ul[no-bullet]
-- <span style="font-size:0.9em" ><font color="white">`DEBUG` and `ASSERT` macros in EDK II code </font></span><br>
-- <span style="font-size:0.9em" ><font color="cyan">`DEBUG` instead of `Print` functions </font></span><br>
-- <span style="font-size:0.9em" ><font color="white">Software/hardware debuggers </font></span><br>
+- <span style="font-size:0.9em" ><font color="white">`DEBUG` and `ASSERT` macros in EDK II code </font></span><br><br>
+- <span style="font-size:0.9em" ><font color="cyan">`DEBUG` instead of `Print` functions </font></span><br><br>
+- <span style="font-size:0.9em" ><font color="white">Software/hardware debuggers </font></span><br><br>
 - <span style="font-size:0.9em" ><font color="cyan">Shell commands to test capabilities for simple debugging </font></span>
 @ulend
 </div>
@@ -98,11 +98,9 @@ Note:
 <p align="center"><span style="font-size:01.1em" ><font color="#e49436" ><b>EDK II `DebugLib` Library</b></font></span></p>
 <br>
 @ul[no-bullet]
-- <span style="font-size:01.1em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #fdb819">
-  <b>&nbsp;&nbsp;&nbsp;&nbsp;`Debug` and `Assert` macros in code &nbsp;&nbsp;</b></span></span></p><br><br>
-- <span style="font-size:01.1em" >&nbsp;<span style="background-color: #92d050">&nbsp;&nbsp;<b>Enable/disable when compiled (`target.txt`)</b>&nbsp;&nbsp;</span></span><br><br>
-- <span style="font-size:01.1em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #7030a0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Connects a Host to capture debug messages &nbsp;</b>&nbsp;&nbsp;</span></span>
+- <span style="font-size:01.0em" >&nbsp;<span style="background-color: #fdb819"><b>&nbsp;&nbsp;`Debug` and `Assert` macros in code &nbsp;&nbsp;</b></span></span></p><br><br>
+- <span style="font-size:01.0em" >&nbsp;<span style="background-color: #92d050">&nbsp;&nbsp;<b>Enable/disable when compiled ("target.txt")</b>&nbsp;&nbsp;</span></span><br><br>
+- <span style="font-size:01.0em" >&nbsp;<span style="background-color: #7030a0">&nbsp;&nbsp;<b>Connects a Host to capture debug messages &nbsp;</b>&nbsp;&nbsp;</span></span>
 @ulend
 
 Note:
@@ -276,8 +274,8 @@ This lab uses code from a previous exercise as a starting point (refer to  Writi
 <span style="font-size:0.8em" >Skip if Lab <a href="https://gitpitch.com/Laurie0131/Writing_UEFI_App_Lab/master#/">Writing UEFI App Lab</a> completed</span>
 <ul>
    <li><span style="font-size:0.8em" >Perform <a href="https://gitpitch.com/Laurie0131/Platform_Build_LAB/master#/">Lab Setup</a> from previous Labs  </span></li>
-   <li><span style="font-size:0.8em" >Create a Directory under the workspace `~/src/edk2 SampleApp`</span></li>
-   <li><span style="font-size:0.8em" >Copy contents of `~/FW/LabSampleCode/SampleAppDebug` to `~/src/edk2 SampleApp`</span></li>
+   <li><span style="font-size:0.8em" >Create a Directory under the workspace `~/src/edk2` : "`SampleApp`"</span></li>
+   <li><span style="font-size:0.8em" >Copy contents of `~/FW/LabSampleCode/SampleAppDebug` to `~/src/edk2/SampleApp`</span></li>
    <li><span style="font-size:0.8em" >Open `~src/edk2/OvmfPkg/OvmfPkgX64.dsc`</span></li>
    <li><span style="font-size:0.8em" >Add the following to the `[Components]` section: </span></li>
 <pre lang="php">
@@ -298,7 +296,7 @@ Note:
 <ul>
   <li><span style="font-size:0.8em" >Open a Terminal Command Prompt (Cnt-Alt-T) and type cd ~/src/edk2<br></span>&nbsp;&nbsp;&nbsp;<span style="font-size:0.6em" ><span style="background-color: #101010">&nbsp;` bash$  .  edksetup `&nbsp;</span> </span></li><br>
   <li><span style="font-size:0.8em" >Open `~/src/edk2/SampleApp/SampleApp.c` </span></li><br>
-  <li><span style="font-size:0.8em" >Add the following to the include statements at the top of the file after below the last “include” statement: </span></li>
+  <li><span style="font-size:0.8em" >Add the following to the include statements at the top of the file after below the last “`#include`” statement: </span></li>
 <pre>
 ```
  #include <Library/DebugLib.h>
@@ -348,7 +346,7 @@ Note:
 @title[Lab 1 Build and Test Driver]
 <p align="right"><span class="gold" >Lab 1: Build and Test Driver</span></p>
 <br>
-<span style="font-size:0.8em" >Build MyWizardDriver – Cd to ~/src/edk2 dir </span>
+<span style="font-size:0.8em" >Build SampleApp – Cd to ~/src/edk2 dir </span>
 ```shell
   bash$ build
 ```
@@ -379,15 +377,14 @@ Note:
   bash$ . RunQemu.sh
 ```
 </pre>
-<span style="font-size:0.7em" >Run the application from the shell, type </span><br>
+<span style="font-size:0.7em" >Run the application from the shell</span><br>
 <span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
-<span style="font-size:0.7em" >Print out the contents of the Debug.log file </span>
+<span style="font-size:0.7em" >Check the contents of the debug.log file </span>
 <pre>
 ```
-  bash$ cat Debug.log
+  bash$ cat debug.log
 ```
 </pre>
-<br>
 <span style="font-size:0.8em" ><font color="yellow">Exit QEMU</font></span>
 
 </pre>
