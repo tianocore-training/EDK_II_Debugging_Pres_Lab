@@ -304,6 +304,8 @@ Note:
 </pre>
 </ul>
 
+Note:
+
 ---
 @title[Lab 1: Add debug statments SampleApp 02]
 <p align="right"><span class="gold" >Lab 1: Add debug statments to SampleApp</span></p>
@@ -343,12 +345,12 @@ Note:
 </pre>
 
 ---
-@title[Lab 1 Build and Test Driver]
-<p align="right"><span class="gold" >Lab 1: Build and Test Driver</span></p>
+@title[Lab 1 Build and Test Application]
+<p align="right"><span class="gold" >Lab 1: Build and Test Application</span></p>
 <br>
 <span style="font-size:0.8em" >Build SampleApp – Cd to ~/src/edk2 dir </span>
 ```shell
-  bash$ build
+   bash$ build
 ```
 <span style="font-size:0.8em" >Copy  the OVMF.fd to the run-ovmf directory naming it bios.bin</span>
 ```shell
@@ -393,6 +395,8 @@ Note:
 <span style="font-size:0.8em" >&nbsp;  </span>
 </div>
 
+Note:
+
 ---?image=/assets/images/slides/Slide_LabSec.JPG
 @title[Lab 2: Changing PCD Value]
 <br>
@@ -408,6 +412,76 @@ Note:
 
 Note:
 In this lab, you’ll learn how to use PCD values to change debugging capabilities.  The previous lab,  Adding Debug Statements, did not display all the DEBUG messages added to SampleApp.c.  This lab shows how to change this behavior.
+
+
+
+
+---
+@title[Lab 2: Change PCDs for SampleApp]
+<p align="right"><span class="gold" >Lab 1: Change PCDs for SampleApp</span></p>
+<br>
+<ul>
+  <li><span style="font-size:0.8em" >Open `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span></li><br>
+  <li><span style="font-size:0.8em" >Add and replace the following for the `SampleApp/SampleApp.inf` Statement</span></li>
+<pre>
+```
+  SampleApp/SampleApp.inf {
+    <PcdsFixedAtBuild>
+      gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xff
+      gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0xffffffff
+ }
+```
+</pre>
+  <li><span style="font-size:0.8em" >Save and close `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span></li>
+  <li><span style="font-size:0.8em" >Build SampleApp </span></li>
+<pre>
+```
+   bash$ build
+```
+</pre>
+   <li><span style="font-size:0.8em" >Copy  SampleApp.efi to hda-contents</span></li>
+<pre>
+```
+ bash$ cd ~/run-ovmf/hda-contents
+ bash$ cp ~/src/edk2/Build/OvmfX64/DEBUG_GCC5/X64/SampleApp.efi .
+```
+</pre>
+
+</ul>
+
+Note:
+
+
+---?image=/assets/images/slides/Slide28.JPG
+@title[Lab 2: Run Qemu Script]
+<p align="right"><span class="gold" >Lab 2: Run the Qemu Script</span></p>
+<br>
+<div class="left">
+<span style="font-size:0.7em" >Test by Invoking Qemu</span>
+<pre>
+```
+  bash$ cd ~/run-ovmf
+  bash$ . RunQemu.sh
+```
+</pre>
+<span style="font-size:0.7em" >Run the application from the shell</span><br>
+<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
+<span style="font-size:0.7em" >Check the contents of the debug.log file </span>
+<pre>
+```
+  bash$ cat debug.log
+```
+</pre>
+<span style="font-size:0.8em" ><font color="yellow">Exit QEMU</font></span>
+
+</pre>
+</div>
+<div class="right">
+<span style="font-size:0.8em" >&nbsp;  </span>
+</div>
+
+Note:
+
 
 
 
