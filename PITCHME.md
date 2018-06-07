@@ -55,10 +55,12 @@ Note:
 </ul>
 
 ---?image=assets/images/binary-strings-black2.jpg
-@title[UEFI Driver Lab]
+@title[Debugging Overview]
 <br><br><br><br><br><br><br>
 ### <span class="gold"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Debugging Overview </span>
 <span style="font-size:0.9em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+Note:
 
 
 ---?image=/assets/images/slides/Slide4.JPG
@@ -121,6 +123,8 @@ Note:
 <br><br><br><br><br><br><br>
 ### <span class="gold"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Debugging with PCDs </span>
 <span style="font-size:0.9em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+Note:
 
 
 ---?image=/assets/images/slides/Slide9.JPG
@@ -333,6 +337,9 @@ DEBUG ((EFI_D_ERROR,    " 0x%08x USING DEBUG EFI_D_ERROR\n", (UINTN)(EFI_D_ERROR
 
 ```
 
+Note:
+
+
 ---?image=/assets/images/slides/Slide26.JPG
 @title[Lab 1: Update the Qemu Script]
 <p align="right"><span class="gold" >Lab 1: Update the Qemu Script</span></p>
@@ -343,6 +350,8 @@ Note:
 
  qemu-system-x86_64 -pflash bios.bin -hda fat:rw:hda-contents -net none     -debugcon file:debug.log -global isa-debugcon.iobase=0x402  -serial file:serial.log
 </pre>
+
+
 
 ---
 @title[Lab 1 Build and Test Application]
@@ -418,7 +427,7 @@ In this lab, you’ll learn how to use PCD values to change debugging capabiliti
 
 ---
 @title[Lab 2: Change PCDs for SampleApp]
-<p align="right"><span class="gold" >Lab 1: Change PCDs for SampleApp</span></p>
+<p align="right"><span class="gold" >Lab 2: Change PCDs for SampleApp</span></p>
 <br>
 <span style="font-size:0.7em" >Open `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
 <span style="font-size:0.7em" >Replace `SampleApp/SampleApp.inf` with the following:</span><br>
@@ -469,6 +478,181 @@ Note:
 </div>
 
 Note:
+
+---?image=assets/images/binary-strings-black2.jpg
+@title[Changing Compiler & Linker Flags Section]
+<br><br><br><br><br><br><br>
+### <span class="gold"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Changing Flags</span>
+<span style="font-size:0.9em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Changing Compiler & Linker Flags</span>
+
+Note:
+
+---?image=/assets/images/slides/Slide37.JPG
+<!-- .slide: data-transition="none" -->
+@title[Precedence for Debug Flags Hierarchy]
+<p align="right"><span class="gold" >Precedence for Debug Flags Hierarchy</span></p>
+
+Note:
+
+
++++?image=/assets/images/slides/Slide38.JPG
+<!-- .slide: data-background-transition="none" -->
+<!-- .slide: data-transition="none" -->
+@title[Precedence for Debug Flags Hierarchy 02]
+<p align="right"><span class="gold" >Precedence for Debug Flags Hierarchy</span></p>
+
+Note:
+
+- think of the rules for compiler switches and options as a pyramid
+ - Pyramid top overrides middle, middle overrides the bottom
+
+
+
++++?image=/assets/images/slides/Slide39.JPG
+<!-- .slide: data-background-transition="none" -->
+<!-- .slide: data-transition="none" -->
+@title[Precedence for Debug Flags Hierarchy 03]
+<p align="right"><span class="gold" >Precedence for Debug Flags Hierarchy</span></p>
+
+Note:
+
+
++++?image=/assets/images/slides/Slide40.JPG
+<!-- .slide: data-background-transition="none" -->
+<!-- .slide: data-transition="none" -->
+@title[Precedence for Debug Flags Hierarchy 04]
+<p align="right"><span class="gold" >Precedence for Debug Flags Hierarchy</span></p>
+
+Note:
+
+
++++?image=/assets/images/slides/Slide41.JPG
+<!-- .slide: data-background-transition="none" -->
+<!-- .slide: data-transition="none" -->
+@title[Precedence for Debug Flags Hierarchy 05]
+<p align="right"><span class="gold" >Precedence for Debug Flags Hierarchy</span></p>
+
+Note:
+
+
+---?image=/assets/images/slides/Slide43.JPG
+<!-- .slide: data-transition="none" -->
+@title[Compiler / Linker Flags]
+<p align="right"><span class="gold" >Compiler / Linker Flags</span></p>
+
+Note:
+- Change common flags in platform DSC
+ - [BuildOptions]
+   - DEBUG_*_IA32_CC_FLAGS = /Od
+
+- Change a single module’s flags in DSC
+ - MyPath/MyModule.inf {
+  - <BuildOptions>
+     - DEBUG_*_IA32_CC_FLAGS = /Od 
+ - }
+
+- Change optimizations, etc…
+
+
++++?image=/assets/images/slides/Slide44.JPG
+<!-- .slide: data-background-transition="none" -->
+<!-- .slide: data-transition="none" -->
+@title[Compiler / Linker Flags 02]
+<p align="right"><span class="gold" >Compiler / Linker Flags</span></p>
+
+Note:
+- Change common flags in platform DSC
+ - [BuildOptions]
+   - DEBUG_*_IA32_CC_FLAGS = /Od
+
+- Change a single module’s flags in DSC
+ - MyPath/MyModule.inf {
+  - <BuildOptions>
+     - DEBUG_*_IA32_CC_FLAGS = /Od 
+ - }
+
+- Change optimizations, etc…
+
+
++++?image=/assets/images/slides/Slide45.JPG
+<!-- .slide: data-background-transition="none" -->
+<!-- .slide: data-transition="none" -->
+@title[Compiler / Linker Flags 03]
+<p align="right"><span class="gold" >Compiler / Linker Flags</span></p>
+
+Note:
+- Change common flags in platform DSC
+ - [BuildOptions]
+   - DEBUG_*_IA32_CC_FLAGS = /Od
+
+- Change a single module’s flags in DSC
+ - MyPath/MyModule.inf {
+  - <BuildOptions>
+     - DEBUG_*_IA32_CC_FLAGS = /Od 
+ - }
+
+- Change optimizations, etc…
+
+
+---?image=assets/images/binary-strings-black2.jpg
+@title[DebugLib Usage Section]
+<br><br><br><br><br><br><br>
+### <span class="gold"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`DebugLib` Usage</span>
+<span style="font-size:0.9em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+Note:
+
+
+---?image=/assets/images/slides/Slide48.JPG
+@title[DebugLib Class]
+<p align="right"><span class="gold" >The `DebugLib` Class</span></p>
+
+Note:
+
+- This is the interface so it will be describing the title of the function and / or Macro not the implementation
+- The interface will describe the parameters needed 
+
+- MdePkg\Include\Library\DebugLib.h
+
+- Do not call internal worker functions directly
+- Macros are where the PCDs are checked
+  - ASSERT (Expression)
+  - DEBUG (Expression)
+  - ASSERT_EFI_ERROR (StatusParameter)
+  - ASSERT_PROTOCOL_ALREADY_INSTALLED(…)
+
+  - Advanced Macros:
+  - DEBUG_CODE (Expression)
+  - DEBUG_CODE_BEGIN() & DEBUG_CODE_END()
+  - DEBUG_CLEAR_MEMORY(…)
+
+
+
+---?image=/assets/images/slides/Slide50.JPG
+@title[DebugLib Instances (1)]
+<p align="center"><span class="gold" >`DebugLib` Instances (1)</span></p>
+<br>
+<br>
+<ul>
+  <li><span style="font-size:0.9em">Instance of `DebugLib`   </span></li>
+  <li><span style="font-size:0.9em">Uses `SerialPortLib` class to send debug output to serial port</span></li>
+  <li><span style="font-size:0.9em">Default for many platforms:  `BaseDebugLibNull`  </span></li>
+  <li><span style="font-size:0.9em">OVMF uses it with Switch `DEBUG_ON_SERIAL_PORT`  </span></li>
+</ul>
+
+
+Note:
+- debugLib library instances
+
+- The first debug Lib library instance is the BaseDebugLibSerialPort 
+ this is a debug Lib that is good for PEI and DXE.
+ It uses the serial Port Lib class and sends all the debug information out the serial port.
+ 
+- Every time that you type DEBUG, it prints the information to the serial port such that if there is another PC capturing that information out the serial port, it allows easy viewing of the debug information. 
+- This is good because it works early on in the platform. You can run very early and get a lot of debug information. 
+- At this point the only serial port library instance that is in the public domain or open source is the DUET version 
+
+
 
 
 
