@@ -413,7 +413,7 @@ Note:
 <p align="Left"><span class="gold" >Lab 2: Changing PCD Value</span></p>
 <br>
 <div class="left1">
-<span style="font-size:0.8em" >In this lab, you’ll you’ll learn how to use PCD values to change debugging capabilities. </span>
+<span style="font-size:0.8em" >In this lab, you’ll  learn how to use PCD values to change debugging capabilities. </span>
 </div>
 <div class="right1">
 <span style="font-size:0.8em" >&nbsp;  </span>
@@ -687,7 +687,8 @@ Note:
   <li><span style="font-size:0.9em">`BaseDebugLibNull`  - Resolves references </span></li>
 </ul>
 <br>
-<span style="font-size:0.7em"><font color="yellow">Default for most platforms</font></span>
+<br>
+<span style="font-size:0.9em"><font color="blue">Default for most platforms</font></span>
 
 
 
@@ -737,7 +738,7 @@ Note:
 @title[Changing Library Instances 02 ]
 <p align="right"><span class="gold" >Changing Library Instances </span></p>
 
-Note:
+
 
 Note:
 - Change common library instances in the platform DSC by module type
@@ -753,6 +754,140 @@ Note:
   }
 </pre>
 - another Note: Use a different debugging library instance only on the module in question (managing size changes)
+
+---?image=/assets/images/slides/Slide_LabSec.JPG
+@title[Lab 3: Library Instances for Debugging]
+<br>
+<br>
+<p align="Left"><span class="gold" >Lab 3: Library Instances for Debugging</span></p>
+<br>
+<div class="left1">
+<span style="font-size:0.8em" >In this lab,  you’ll learn how to add specific debug library instances. </span>
+</div>
+<div class="right1">
+<span style="font-size:0.8em" >&nbsp;  </span>
+</div>
+
+Note:
+
+
+---
+@title[Lab 3: Using Library Instances for Debugging]
+<p align="right"><span class="gold" >Lab 3: Using Library Instances for Debuggingp</span></p>
+<br>
+<span style="font-size:0.7em" >Open `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
+<span style="font-size:0.7em" >Replace `SampleApp/SampleApp.inf { . . .}` with the following:</span><br>
+```c
+  SampleApp/SampleApp.inf {
+   <LibraryClasses>
+    DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
+ }
+```
+<span style="font-size:0.7em" >Save and close `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
+<span style="font-size:0.7em" >Build SampleApp : </span><span style="font-size:0.5em" ><span style="background-color: #000000">&nbsp;&nbsp;`bash$ build`&nbsp;&nbsp;</span></span><br>
+<span style="font-size:0.7em" >Copy  SampleApp.efi to hda-contents</span>
+```shell
+ bash$ cd ~/run-ovmf/hda-contents
+ bash$ cp ~/src/edk2/Build/OvmfX64/DEBUG_GCC5/X64/SampleApp.efi .
+```
+
+Note:
+
+---?image=/assets/images/slides/Slide62.JPG
+@title[Lab 3: Run Qemu Script]
+<p align="right"><span class="gold" >Lab 3: Run the Qemu Script</span></p>
+<br>
+<div class="left">
+<span style="font-size:0.7em" >Test by Invoking Qemu</span>
+<pre>
+```
+  bash$ cd ~/run-ovmf
+  bash$ . RunQemu.sh
+```
+</pre>
+<span style="font-size:0.7em" >Run the application from the shell</span><br>
+<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
+<span style="font-size:0.7em" >See that the output from the Debug statements now goes to the QEMU console </span><br>
+<br>
+<span style="font-size:0.8em" ><font color="yellow">Exit QEMU</font></span>
+</div>
+<div class="right">
+<span style="font-size:0.8em" >&nbsp;  </span>
+</div>
+
+Note:
+
+---?image=/assets/images/slides/Slide_LabSec.JPG
+@title[Lab 4: Serial port Instance of DebugLib]
+<br>
+<br>
+<p align="Left"><span class="gold" >Lab 4: Serial port Instance of `DebugLib`</span></p>
+<br>
+<div class="left1">
+<span style="font-size:0.8em" >In this lab,  you’ll change the `DebugLib` to the Serial port instance. </span>
+</div>
+<div class="right1">
+<span style="font-size:0.8em" >&nbsp;  </span>
+</div>
+
+Note:
+
+The DEBUG output for SampleApp is redirected to the serial.log file. This debug library instance only applies to SampleApp and does not alter the general debug behavior of other modules.
+To change the entire debug to Serial.log the switch “-D DEBUG_ON_SERIAL_PORT” can be used with the Build command. 
+
+
+---
+@title[Lab 4: Using Serial port Library Instances]
+<p align="right"><span class="gold" >Lab 4: Using Serial port Library Instances</span></p>
+<br>
+<span style="font-size:0.7em" >Open `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
+<span style="font-size:0.7em" >Replace `SampleApp/SampleApp.inf { . . .}` with the following:</span><br>
+```c
+  SampleApp/SampleApp.inf {
+   <LibraryClasses>      
+      DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+ }
+```
+<span style="font-size:0.7em" >Save and close `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
+<span style="font-size:0.7em" >Build SampleApp : </span><span style="font-size:0.5em" ><span style="background-color: #000000">&nbsp;&nbsp;`bash$ build`&nbsp;&nbsp;</span></span><br>
+<span style="font-size:0.7em" >Copy  SampleApp.efi to hda-contents</span>
+```shell
+ bash$ cd ~/run-ovmf/hda-contents
+ bash$ cp ~/src/edk2/Build/OvmfX64/DEBUG_GCC5/X64/SampleApp.efi .
+```
+
+Note:
+
+
+---?image=/assets/images/slides/Slide67.JPG
+@title[Lab 4: Run Qemu Script]
+<p align="right"><span class="gold" >Lab 4: Run the Qemu Script</span></p>
+<br>
+<div class="left">
+<span style="font-size:0.7em" >Test by Invoking Qemu</span>
+<pre>
+```
+  bash$ cd ~/run-ovmf
+  bash$ . RunQemu.sh
+```
+</pre>
+<span style="font-size:0.7em" >Run the application from the shell</span><br>
+<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
+<span style="font-size:0.7em" >Check the contents of the serial.log file </span>
+<pre>
+```
+  bash$ cat serial.log
+```
+</pre>
+<span style="font-size:0.8em" ><font color="yellow">Exit QEMU</font></span>
+
+</pre>
+</div>
+<div class="right">
+<span style="font-size:0.8em" >&nbsp;  </span>
+</div>
+
+Note:
 
 
 
