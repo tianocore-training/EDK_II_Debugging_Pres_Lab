@@ -906,11 +906,14 @@ Note:
 ---
 @title[Lab 5: Update the Qemu Script]
 <p align="right"><span class="gold" >Lab 5: Update the Qemu Script</span></p>
-
+<br>
 <span style="font-size:0.8em" >Edit  the Linux shell script to run the QEMU from the run-ovmf directory and add  the option for GDB “-s” to 
 generate a symbol file and also use IA32 instead of x86_64</span><br>
-
-<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;bash$ gedit RunQemu.sh</span></span><br>
+```
+ bash$ cd ~/run-ovmf
+ bash$ gedit RunQemu.sh
+```
+<span style="font-size:0.8em" > add the following to RunQemu.sh</span></span>
 ```
   qemu-system-i386 -s  -pflash bios.bin -hda fat:rw:hda-contents -net none -debugcon file:debug.log -global isa-debugcon.iobase=0x402 
 ```
@@ -927,18 +930,27 @@ Note:
 ---
 @title[Lab 5: Build Ovmf for IA32]
 <p align="right"><span class="gold" >Lab 5: Build Ovmf for IA32</span></p>
+<br>
 <span style="font-size:0.8em">Add `SampleApp/SampleApp.inf` to the OvmfPkgIa32.dsc (using IA32 )  at the end of the 
    `[Components]` section in the OvmfPkgIa32.dsc file.</span><br>
-<span style="font-size:0.8em">Build OVMF for IA32 :  
-    </span> <span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;bash$ build -a IA32 -p OvmfPkg/OvmfPkgIa32.dsc</span></span><br>
+```php
+  [Components]
+   #  add at the end of the components section
+    SampleApp/SampleApp.inf
+```
+<span style="font-size:0.8em">Build OVMF for IA32 :  </span>
+```
+  bash$ build -a IA32 -p OvmfPkg/OvmfPkgIa32.dsc
+```
 
 <span style="font-size:0.8em">Copy the the OVMF.fd to the run-ovmf directory renaming it bios.bin: </span>
 ```
-bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/FV/OVMF.fd ~/run-ovmf/bios.bin
+bash$ cd ~/run-ovmf/
+bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/FV/OVMF.fd  bios.bin
 ```
 <span style="font-size:0.8em">Copy the output of SampleApp to the `hda-contents` directory: </span>
 ```
-cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  ~/run-ovmf/hda-contents/
+bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  ~/run-ovmf/hda-contents/
 ```
 <span style="font-size:0.8em">The following will be in the `~/run-ovmf/hda-contents/`</span>
 ```
@@ -948,6 +960,65 @@ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  ~/run-ovmf/hda-contents/
 ```
 
 Note:
+- lab 5.2
+
+---
+@title[Lab 5: Build Ovmf for IA32 03]
+<p align="right"><span class="gold" >Lab 5: Build Ovmf for IA32</span></p>
+<br>
+<span style="font-size:0.8em">Copy the output of SampleApp to the `hda-contents` directory: </span>
+```
+bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  ~/run-ovmf/hda-contents/
+```
+<span style="font-size:0.8em">The following will be in the `~/run-ovmf/hda-contents/`</span>
+```
+   SampleApp.efi
+   SampleApp.debug
+   SampleApp (Directory)
+```
+
+Note:
+- lab 5.3
+
+---
+@title[Lab 5: Run Qemu ]
+<p align="right"><span class="gold" >Lab 5: Run Qemu</span></p>
+<br>
+<span style="font-size:0.7em" >Open a Terminal(1) Prompt and Invoke Qemu</span>
+<pre>
+```
+  bash$ cd ~/run-ovmf
+  bash$ . RunQemu.sh
+```
+</pre>
+<span style="font-size:0.7em" >Run the application from the shell</span><br>
+<span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
+
+Note:
+- lab 5.4
+
+---
+@title[Lab 5: Check debug.log ]
+<p align="right"><span class="gold" >Lab 5: Check debug.log</span></p>
+<br>
+<span style="font-size:0.7em" >Open <b>another</b> Terminal(2) Prompt in the `run-ovmf` directory and check out the `debug.log` file.</span>
+```
+  bash$ cat debug.log
+```
+<span style="font-size:0.7em" >See that Loading driver at `0x00006AEE000` is the memory location where your UEFI Application is loaded. </span>
+```
+ InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6F0F028
+ Loading driver at 0x00006AEE000 EntryPoint=0x00006AEE756 SampleApp.efi
+ InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6F0FF10
+```
+<span style="font-size:0.7em" >Add a DEBUG statement to your application to get the entry point of your code.</span>
+```
+  DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
+```
+<span style="font-size:0.7em" >When you print out the debug.log the exact entry point for your code.</span>
+
+Note:
+- lab 5.5
 
 
 
