@@ -421,7 +421,7 @@ In this lab, you’ll learn how to use PCD values to change debugging capabiliti
 <p align="right"><span class="gold" >Lab 1: Change PCDs for SampleApp</span></p>
 <br>
 <span style="font-size:0.7em" >Open `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
-<span style="font-size:0.7em" >Add and replace the following for the `SampleApp/SampleApp.inf` Statement</span><br>
+<span style="font-size:0.7em" >Replace `SampleApp/SampleApp.inf` with the following:</span><br>
 ```c
   SampleApp/SampleApp.inf {
     <PcdsFixedAtBuild>
@@ -430,10 +430,7 @@ In this lab, you’ll learn how to use PCD values to change debugging capabiliti
  }
 ```
 <span style="font-size:0.7em" >Save and close `~src/edk2/OvmfPkg/OvmfPkgX64.dsc` </span><br>
-<span style="font-size:0.7em" >Build SampleApp </span>
-```shell
-   bash$ build
-```
+<span style="font-size:0.7em" >Build SampleApp : </span><span style="font-size:0.5em" ><span style="background-color: #000000">&nbsp;&nbsp;`bash$ build`&nbsp;&nbsp;</span></span><br>
 <span style="font-size:0.7em" >Copy  SampleApp.efi to hda-contents</span>
 ```shell
  bash$ cd ~/run-ovmf/hda-contents
