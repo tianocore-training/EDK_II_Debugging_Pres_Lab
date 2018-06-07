@@ -605,7 +605,7 @@ Note:
 
 ---?image=/assets/images/slides/Slide48.JPG
 @title[DebugLib Class]
-<p align="right"><span class="gold" >The `DebugLib` Class</span></p>
+<p align="center"><span class="gold" ><b>The `DebugLib` Class</b></span></p>
 
 Note:
 
@@ -630,7 +630,9 @@ Note:
 
 ---?image=/assets/images/slides/Slide50.JPG
 @title[DebugLib Instances (1)]
-<p align="center"><span class="gold" >`DebugLib` Instances (1)</span></p>
+<br>
+<p align="center"><span class="gold" ><b>`DebugLib` Instances (1)</b></span></p>
+<br>
 <br>
 <br>
 <ul>
