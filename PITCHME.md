@@ -48,10 +48,10 @@ Note:
 <ul style="list-style-type:none">
  <li>@fa[certificate gp-bullet-green]<span style="font-size:0.9em">&nbsp;&nbsp;Define `DebugLib` and its attributes</span> </li>
  <li>@fa[certificate gp-bullet-cyan]<span style="font-size:0.9em">&nbsp;&nbsp;List the ways to debug</span></li>
- <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Use `DEBUG` instead of `Print` function</span> </li>
- <li>@fa[certificate gp-bullet-gold]<span style="font-size:0.9em">&nbsp;&nbsp;Using PCDs to Configure `DebugLib` </span> </li>
+ <li>@fa[certificate gp-bullet-gold]<span style="font-size:0.9em">&nbsp;&nbsp;Using PCDs to Configure `DebugLib` -LAB </span> </li>
  <li>@fa[certificate gp-bullet-ltgreen]<span style="font-size:0.9em">&nbsp;&nbsp;Change Compiler & Linker Flags for debugging</span></li>
- <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Change the `DebugLib` instance to modify the debug<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output</span> </li>
+ <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Change the `DebugLib` instance to modify the debug<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output - LAB</span> </li>
+ <li>@fa[certificate gp-bullet-magenta]<span style="font-size:0.9em">&nbsp;&nbsp;Debug EDK II using GDB - LAB</span> </li>
 </ul>
 
 ---?image=assets/images/binary-strings-black2.jpg
@@ -905,8 +905,8 @@ Note:
 Note:
 
 ---
-@title[Lab 5: Update the Qemu Script]
-<p align="right"><span class="gold" >Lab 5: Update the Qemu Script</span></p>
+@title[Lab 5.1: Update the Qemu Script]
+<p align="right"><span class="gold" >Lab 5.1: Update the Qemu Script</span></p>
 <br>
 <span style="font-size:0.8em" >Edit  the Linux shell script to run the QEMU from the run-ovmf directory and add  the option for GDB “-s” to 
 generate a symbol file and also use IA32 instead of x86_64</span><br>
@@ -929,8 +929,8 @@ Note:
 
 
 ---
-@title[Lab 5: Build Ovmf for IA32]
-<p align="right"><span class="gold" >Lab 5: Build Ovmf for IA32</span></p>
+@title[Lab 5.2: Build Ovmf for IA32]
+<p align="right"><span class="gold" >Lab 5.2: Build Ovmf for IA32</span></p>
 <br>
 <span style="font-size:0.8em">Open `~/src/edk2/OvmfPkg/OvmfPkgIa32.dsc` and add the application to the  (using IA32 )  at the end of the 
    `[Components]` section.</span><br>
@@ -955,8 +955,8 @@ Note:
 - lab 5.2
 
 ---
-@title[Lab 5: Build Ovmf for IA32 03]
-<p align="right"><span class="gold" >Lab 5: Build Ovmf for IA32</span></p>
+@title[Lab 5.3: Build Ovmf for IA32 03]
+<p align="right"><span class="gold" >Lab 5.3: Build Ovmf for IA32</span></p>
 <br>
 <span style="font-size:0.8em">Copy the output of SampleApp to the `hda-contents` directory: </span>
 ```
@@ -983,8 +983,8 @@ Note:
 
 
 ---
-@title[Lab 5: Check debug.log ]
-<p align="right"><span class="gold" >Lab 5: Check debug.log</span></p>
+@title[Lab 5.4: Check debug.log ]
+<p align="right"><span class="gold" >Lab 5.4: Check debug.log</span></p>
 <br>
 <span style="font-size:0.7em" >Open <font color="yellow"><b>another</b></font> Terminal(2) Prompt in the `run-ovmf` directory and check the `debug.log` file.</span>
 ```
@@ -1002,8 +1002,8 @@ Note:
 - lab 5.4
 
 ---
-@title[Lab 5: Add a Debug Print]
-<p align="right"><span class="gold" >Lab 5: Add a Debug Print</span></p>
+@title[Lab 5.5: Add a Debug Print]
+<p align="right"><span class="gold" >Lab 5.5: Add a Debug Print</span></p>
 <span style="font-size:0.7em" >Add a DEBUG statement to your SampleApp.c application to get the entry point of your code. </span><br>
 <span style="font-size:0.5em" >Add the following DEBUG line just before the DEBUG statements from the previous lab:</span>
 ```C
@@ -1028,8 +1028,8 @@ Note:
 - lab 5.5
 
 ---
-@title[Lab 5: Invoking GDB]
-<p align="right"><span class="gold" >Lab 5: Invoking GDB</span></p>
+@title[Lab 5.6: Invoking GDB]
+<p align="right"><span class="gold" >Lab 5.6: Invoking GDB</span></p>
 <span style="font-size:0.7em" >In the terminal(2) prompt Invoke GDB</span><span style="font-size:0.5em" >(note - at first there will be nothing in the source window)</span>
 ```
 bash$ cd ~/run-ovmf/hda-contents
@@ -1059,8 +1059,8 @@ Note:
 
 
 ---
-@title[Lab 5: Calculate Addresses]
-<p align="right"><span class="gold" >Lab 5: Calculate Addresses</span></p>
+@title[Lab 5.7: Calculate Addresses]
+<p align="right"><span class="gold" >Lab 5.7: Calculate Addresses</span></p>
 <br>
 <span style="font-size:0.7em" >We need to calculate our addresses for ".text" and ".data" section.</span><span style="font-size:0.5em" > The application is loaded under `0x00006AEE000` (loading driver point - <b>NOT Entrypoint</b>) and we know text and data offsets.</span>
 ```
@@ -1080,8 +1080,8 @@ Note:
 
 
 ---
-@title[Lab 5: Load the Symbols for SampleApp]
-<p align="right"><span class="gold" >Lab 5: Load the Symbols for SampleApp</span></p>
+@title[Lab 5.8: Load the Symbols for SampleApp]
+<p align="right"><span class="gold" >Lab 5.8: Load the Symbols for SampleApp</span></p>
 <br>
 <span style="font-size:0.7em" >Load the symbols with the fixed up address using SampleApp output .debug file using the "`add-symbol-file`" command:</span>
 ```
@@ -1105,8 +1105,8 @@ Note:
 
 
 ---
-@title[Lab 5: Attach GDB to QEMU]
-<p align="right"><span class="gold" >Lab 5: Attach GDB to QEMU</span></p>
+@title[Lab 5.9: Attach GDB to QEMU]
+<p align="right"><span class="gold" >Lab 5.9: Attach GDB to QEMU</span></p>
 <br>
 <span style="font-size:0.7em" >Attach the GDB debugger to QEMU</span>
 ```
@@ -1148,11 +1148,11 @@ Note:
 <ul style="list-style-type:none">
  <li>@fa[certificate gp-bullet-green]<span style="font-size:0.9em">&nbsp;&nbsp;Define `DebugLib` and its attributes</span> </li>
  <li>@fa[certificate gp-bullet-cyan]<span style="font-size:0.9em">&nbsp;&nbsp;List the ways to debug</span></li>
- <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Use `DEBUG` instead of `Print` function</span> </li>
- <li>@fa[certificate gp-bullet-gold]<span style="font-size:0.9em">&nbsp;&nbsp;Using PCDs to Configure `DebugLib` </span> </li>
+ <li>@fa[certificate gp-bullet-gold]<span style="font-size:0.9em">&nbsp;&nbsp;Using PCDs to Configure `DebugLib` -LAB </span> </li>
  <li>@fa[certificate gp-bullet-ltgreen]<span style="font-size:0.9em">&nbsp;&nbsp;Change Compiler & Linker Flags for debugging</span></li>
- <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Change the `DebugLib` instance to modify the debug<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output</span> </li>
-</ul>
+ <li>@fa[certificate gp-bullet-yellow]<span style="font-size:0.9em">&nbsp;&nbsp;Change the `DebugLib` instance to modify the debug<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output - LAB</span> </li>
+ <li>@fa[certificate gp-bullet-magenta]<span style="font-size:0.9em">&nbsp;&nbsp;Debug EDK II using GDB- LAB</span> </li>
+</ul
 
 ---?image=assets/images/gitpitch-audience.jpg
 @title[Questions]
