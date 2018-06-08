@@ -1007,15 +1007,8 @@ Note:
 <span style="font-size:0.7em" >Add a DEBUG statement to your SampleApp.c application to get the entry point of your code. </span><br>
 <span style="font-size:0.5em" >Add the following DEBUG line just before the DEBUG statements from the previous lab:</span>
 ```C
-EFI_STATUS
-EFIAPI
 UefiMain (
-  IN EFI_HANDLE        ImageHandle,
-  IN EFI_SYSTEM_TABLE  *SystemTable
-  )
-{
-	UINTN                            EventIndex;
-	BOOLEAN		   ExitLoop;
+// . . .
 	EFI_INPUT_KEY	   Key;
 	// ADD the following line
     DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
@@ -1042,12 +1035,12 @@ Note:
  bash$ cd ~/run-ovmf/hda-contents
  bash$ gdb --tui 
 ```
-<span style="font-size:0.7em" >Load your UEFI Application SampleApp.efi with the `file` command.</span>
+<span style="font-size:0.7em" >Load your UEFI Application SampleApp.efi with the "`file`" command.</span>
 ```
  (gdb) file SampleApp.efi
  Reading symbols from SampleApp.efi...(no debugging symbols found)...done. 
 ```
-<span style="font-size:0.7em" >Check where GDB has for .text and .data offsets with `info files` command.</span>
+<span style="font-size:0.7em" >Check where GDB has for ".text" and ".data" offsets with "`info files`" command.</span>
 ```
  (gdb) info files
  Symbols from "/home/u-mypc/run-ovmf/hda-contents/SampleApp.efi".
@@ -1069,7 +1062,7 @@ Note:
 @title[Lab 5: Calculate Addresses]
 <p align="right"><span class="gold" >Lab 5: Calculate Addresses</span></p>
 <br>
-<span style="font-size:0.7em" >We need to calculate our addresses for .text and .data section.</span><span style="font-size:0.5em" > The application is loaded under `0x00006AEE000` (loading driver point - <b>NOT</b> Entrypoint) and we know text and data offsets.</span>
+<span style="font-size:0.7em" >We need to calculate our addresses for ".text" and ".data" section.</span><span style="font-size:0.5em" > The application is loaded under `0x00006AEE000` (loading driver point - <b>NOT Entrypoint</b>) and we know text and data offsets.</span>
 ```
  text = 0x00006AEE000  +  0x00000240 = 0x06AEE240
  data = 0x00006AEE000  +  0x00000240 + 0x000028c0 = 0x06AF0B00 
@@ -1101,7 +1094,7 @@ Reading symbols from SampleApp.debug...done.
 ```
 <span style="font-size:0.7em" >Set a break point at UefiMain</span>
 ```
-(gdb) break UefiMainMySampleApp 
+(gdb) break UefiMain
 Breakpoint 1 at 0x6aee496: file /home/u-uefi/src/edk2/SampleApp/SampleApp.c, line 40.
 ```
 
@@ -1126,7 +1119,6 @@ Continuing.
 ```
 <span style="font-size:0.7em" >In the QEMU Window Invoke your application again</span>
 ```
-Shell> fs0:
 Fs0:\> SampleApp.efi
 ```
 <span style="font-size:0.7em" >The GDB will hit your break point in your UEFI application's entry point and you can begin to debug with source code debugging.</span>
@@ -1136,9 +1128,9 @@ Note:
 - Lab 5.9
 
 
----?image=/assets/images/slides/Slide3.JPG
+---?image=/assets/images/slides/Slide71.JPG
 @title[Lab 5: GBD and QEMU Windows]
-<p align="right"><span class="gold" >Lab 5: Attach GDB to QEMU</span></p>
+<p align="right"><span class="gold" >Lab 5: GBD and QEMU Windows</span></p>
 <span style="font-size:0.7em" >The GDB window will look similar to this</span>
 
 Note:
