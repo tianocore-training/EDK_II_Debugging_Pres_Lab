@@ -1004,12 +1004,29 @@ Note:
 @title[Lab 5: Add a Debug Print]
 <p align="right"><span class="gold" >Lab 5: Add a Debug Print</span></p>
 <br>
-<span style="font-size:0.7em" >Add a DEBUG statement to your application to get the entry point of your code.</span>
-```
-  DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
+<span style="font-size:0.7em" >Add a DEBUG statement to your SampleApp.c application to get the entry point of your code. </span><br>
+<span style="font-size:0.5em" >Add the following DEBUG line just before the DEBUG statements from the previous lab:</span>
+```C
+EFI_STATUS
+EFIAPI
+UefiMain (
+  IN EFI_HANDLE        ImageHandle,
+  IN EFI_SYSTEM_TABLE  *SystemTable
+  )
+{
+	UINTN                            EventIndex;
+	BOOLEAN		   ExitLoop;
+	EFI_INPUT_KEY	   Key;
+	// ADD the following line
+    DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
 ```
 <span style="font-size:0.7em" >When you print out the debug.log again, the exact entry point for your code will show.</span>
 ```
+  Loading driver at 0x00006AEE000 EntryPoint=0x00006AEE756 SampleApp.efi
+  InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6F0FF10
+  ProtectUefiImageCommon - 0x6F0F028
+    - 0x0000000006AEE000 - 0x0000000000002B00
+  InstallProtocolInterface: 752F3136-4E16-4FDC-A22A-E5F46812F4CA 7EA4B00
   My Entry point: 0x06AEE496 
 ```
 
@@ -1067,6 +1084,65 @@ No symbol file now.
 Note:
 - Lab 5.7
 
+
+---
+@title[Lab 5: Load the Symbols for SampleApp]
+<p align="right"><span class="gold" >Lab 5: Load the Symbols for SampleApp</span></p>
+<br>
+<span style="font-size:0.7em" >Load the symbols with the fixed up address using SampleApp output .debug file:</span>
+```
+(gdb) add-symbol-file SampleApp.debug 0x06AEE240 -s .data 0x06AF0B00 
+add symbol table from file "SampleApp.debug" at
+
+        .text_addr = 0x6aee240
+        .data_addr = 0x6af0b00
+(y or n) y
+Reading symbols from SampleApp.debug...done.
+```
+<span style="font-size:0.7em" >Set a break point at UefiMain</span>
+```
+(gdb) break UefiMainMySampleApp 
+Breakpoint 1 at 0x6aee496: file /home/u-uefi/src/edk2/SampleApp/SampleApp.c, line 40.
+```
+
+Note:
+- Lab 5.8
+
+
+---
+@title[Lab 5: Attach GDB to QEMU]
+<p align="right"><span class="gold" >Lab 5: Attach GDB to QEMU</span></p>
+<br>
+<span style="font-size:0.7em" >Attach the GDB debugger to QEMU</span>
+```
+(gdb) target remote localhost:1234
+Remote debugging using localhost:1234
+0x07df6ba4 in ?? ()
+```
+<span style="font-size:0.7em" >Continue in GDB</span>
+```
+(gdb) c
+Continuing.
+```
+<span style="font-size:0.7em" >In the QEMU Window Invoke your application again</span>
+```
+Shell> fs0:
+Fs0:\> SampleApp.efi
+```
+<span style="font-size:0.7em" >The GDB will hit your break point in your UEFI application's entry point and you can begin to debug with source code debugging.</span>
+
+
+Note:
+- Lab 5.9
+
+
+---?image=/assets/images/slides/Slide3.JPG
+@title[Lab 5: GBD and QEMU Windows]
+<p align="right"><span class="gold" >Lab 5: Attach GDB to QEMU</span></p>
+<span style="font-size:0.7em" >The GDB window will look similar to this</span>
+
+Note:
+- Lab 5.10
 
 
 
