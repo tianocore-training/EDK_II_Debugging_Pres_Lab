@@ -761,7 +761,8 @@ Note:
 <p align="Left"><span class="gold" >Lab 3: Library Instances for Debugging</span></p>
 <br>
 <div class="left1">
-<span style="font-size:0.8em" >In this lab,  you’ll learn how to add specific debug library instances. </span>
+<span style="font-size:0.8em" >In this lab,  you’ll learn how to add specific debug library instances. </span><br>
+<span style="font-size:0.7em" >See also the tianocore.org wiki page: <a href="https://github.com/tianocore/tianocore.github.io/wiki/How-to-debug-OVMF-with-QEMU-using-GDB "> How to use GDB with QEMU</a>
 </div>
 <div class="right1">
 <span style="font-size:0.8em" >&nbsp;  </span>
@@ -940,7 +941,7 @@ Note:
 ```
 <span style="font-size:0.8em">Build OVMF for IA32 :  </span>
 ```
-  bash$ build -a IA32 -p OvmfPkg/OvmfPkgIa32.dsc
+bash$ build -a IA32 -p OvmfPkg/OvmfPkgIa32.dsc
 ```
 
 <span style="font-size:0.8em">Copy the the OVMF.fd to the run-ovmf directory renaming it bios.bin: </span>
@@ -970,8 +971,8 @@ bash$ cp ~/src/edk2/Build/OvmfIa32/DEBUG_GCC5/IA32/SampleApp  .
 ```
 <span style="font-size:0.7em" >Open a Terminal(1) Prompt and Invoke Qemu</span>
 ```
-  bash$ cd ~/run-ovmf
-  bash$ . RunQemu.sh
+bash$ cd ~/run-ovmf
+bash$ . RunQemu.sh
 ```
 <span style="font-size:0.7em" >Run the application from the shell</span><br>
 <span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
@@ -985,10 +986,10 @@ Note:
 @title[Lab 5: Check debug.log ]
 <p align="right"><span class="gold" >Lab 5: Check debug.log</span></p>
 <br>
-<span style="font-size:0.7em" >Open <font color="yellow"><b>another</b></font> Terminal(2) Prompt in the `run-ovmf` directory and check out the `debug.log` file.</span>
+<span style="font-size:0.7em" >Open <font color="yellow"><b>another</b></font> Terminal(2) Prompt in the `run-ovmf` directory and check the `debug.log` file.</span>
 ```
-   bash$ cd ~/run-ovmf
-   bash$ cat debug.log
+bash$ cd ~/run-ovmf
+bash$ cat debug.log
 ```
 <span style="font-size:0.7em" >See the line: `Loading driver at 0x00006AEE000` is the memory location where your UEFI Application is loaded. </span>
 ```
@@ -1013,6 +1014,7 @@ UefiMain (
     DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
 ```
 <span style="font-size:0.7em" >When you print out the debug.log again, the exact entry point for your code will show.</span>
+<span style="font-size:0.5em" >This is useful to double check symbols are fixed up to the correct line numbers in the source file.</span>
 ```
   Loading driver at 0x00006AEE000 EntryPoint=0x00006AEE756 SampleApp.efi
   InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6F0FF10
@@ -1030,8 +1032,8 @@ Note:
 <p align="right"><span class="gold" >Lab 5: Invoking GDB</span></p>
 <span style="font-size:0.7em" >In the terminal(2) prompt Invoke GDB</span><span style="font-size:0.5em" >(note - at first there will be nothing in the source window)</span>
 ```
- bash$ cd ~/run-ovmf/hda-contents
- bash$ gdb --tui 
+bash$ cd ~/run-ovmf/hda-contents
+bash$ gdb --tui 
 ```
 <span style="font-size:0.7em" >Load your UEFI Application SampleApp.efi with the "`file`" command.</span>
 ```
