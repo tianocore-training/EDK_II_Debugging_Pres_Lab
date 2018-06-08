@@ -762,7 +762,6 @@ Note:
 <br>
 <div class="left1">
 <span style="font-size:0.8em" >In this lab,  you’ll learn how to add specific debug library instances. </span><br>
-<span style="font-size:0.7em" >See also the tianocore.org wiki page: <a href="https://github.com/tianocore/tianocore.github.io/wiki/How-to-debug-OVMF-with-QEMU-using-GDB "> How to use GDB with QEMU</a>
 </div>
 <div class="right1">
 <span style="font-size:0.8em" >&nbsp;  </span>
@@ -896,7 +895,8 @@ Note:
 <p align="Left"><span class="gold" >Lab 5: Debugging EDK II with GDB</span></p>
 <br>
 <div class="left1">
-<span style="font-size:0.8em" >In this lab,  you’ll learn how setup the Linux GDB to use with EDK II and Qemu </span>
+<span style="font-size:0.8em" >In this lab,  you’ll learn how setup the Linux GDB to use with EDK II and Qemu </span><br>
+<span style="font-size:0.7em" >See also the tianocore.org wiki page:<br> <a href="https://github.com/tianocore/tianocore.github.io/wiki/How-to-debug-OVMF-with-QEMU-using-GDB "> How to use GDB with QEMU</a>
 </div>
 <div class="right1">
 <span style="font-size:0.8em" >&nbsp;  </span>
@@ -1013,7 +1013,7 @@ UefiMain (
 	// ADD the following line
     DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
 ```
-<span style="font-size:0.7em" >When you print out the debug.log again, the exact entry point for your code will show.</span>
+<span style="font-size:0.7em" >When you print out the debug.log again, the exact entry point for your code will show.</span><br>
 <span style="font-size:0.5em" >This is useful to double check symbols are fixed up to the correct line numbers in the source file.</span>
 ```
   Loading driver at 0x00006AEE000 EntryPoint=0x00006AEE756 SampleApp.efi
