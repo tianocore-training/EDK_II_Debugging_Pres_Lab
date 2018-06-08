@@ -990,7 +990,7 @@ Note:
    bash$ cd ~/run-ovmf
    bash$ cat debug.log
 ```
-<span style="font-size:0.7em" >See that Loading driver at `0x00006AEE000` is the memory location where your UEFI Application is loaded. </span>
+<span style="font-size:0.7em" >See the line: `Loading driver at 0x00006AEE000` is the memory location where your UEFI Application is loaded. </span>
 ```
  InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6F0F028
  Loading driver at 0x00006AEE000 EntryPoint=0x00006AEE756 SampleApp.efi
@@ -1003,7 +1003,6 @@ Note:
 ---
 @title[Lab 5: Add a Debug Print]
 <p align="right"><span class="gold" >Lab 5: Add a Debug Print</span></p>
-<br>
 <span style="font-size:0.7em" >Add a DEBUG statement to your SampleApp.c application to get the entry point of your code. </span><br>
 <span style="font-size:0.5em" >Add the following DEBUG line just before the DEBUG statements from the previous lab:</span>
 ```C
@@ -1029,7 +1028,6 @@ Note:
 ---
 @title[Lab 5: Invoking GDB]
 <p align="right"><span class="gold" >Lab 5: Invoking GDB</span></p>
-<br>
 <span style="font-size:0.7em" >In the terminal(2) prompt Invoke GDB</span><span style="font-size:0.5em" >(note - at first there will be nothing in the source window)</span>
 ```
  bash$ cd ~/run-ovmf/hda-contents
@@ -1055,7 +1053,7 @@ Note:
 
 Note:
 - Lab 5.6
-
+- For the GDB commands, only type what is after the "(gdb)" prompt
 
 
 ---
@@ -1076,13 +1074,14 @@ No symbol file now.
 
 Note:
 - Lab 5.7
+- For the GDB commands, only type what is after the "(gdb)" prompt
 
 
 ---
 @title[Lab 5: Load the Symbols for SampleApp]
 <p align="right"><span class="gold" >Lab 5: Load the Symbols for SampleApp</span></p>
 <br>
-<span style="font-size:0.7em" >Load the symbols with the fixed up address using SampleApp output .debug file:</span>
+<span style="font-size:0.7em" >Load the symbols with the fixed up address using SampleApp output .debug file using the "`add-symbol-file`" command:</span>
 ```
 (gdb) add-symbol-file SampleApp.debug 0x06AEE240 -s .data 0x06AF0B00 
 add symbol table from file "SampleApp.debug" at
@@ -1100,6 +1099,7 @@ Breakpoint 1 at 0x6aee496: file /home/u-uefi/src/edk2/SampleApp/SampleApp.c, lin
 
 Note:
 - Lab 5.8
+- For the GDB commands, only type what is after the "(gdb)" prompt
 
 
 ---
@@ -1126,6 +1126,7 @@ Fs0:\> SampleApp.efi
 
 Note:
 - Lab 5.9
+- For the GDB commands, only type what is after the "(gdb)" prompt
 
 
 ---?image=/assets/images/slides/Slide71.JPG
