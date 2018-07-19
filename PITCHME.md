@@ -1108,7 +1108,7 @@ Note:
 ---
 @title[Lab 5.9: Attach GDB to QEMU]
 <p align="right"><span class="gold" >Lab 5.9: Attach GDB to QEMU</span></p>
-<br>
+
 <span style="font-size:0.7em" >Attach the GDB debugger to QEMU</span>
 
 
@@ -1126,8 +1126,7 @@ Continuing.
 ```
 Fs0:\> SampleApp.efi
 ```
-
-<span style="font-size:0.7em" >The GDB will hit your break point in your UEFI application's entry point and you can begin to debug with source code debugging.</span>
+<p style="line-height:80%"><span style="font-size:0.7em" >The GDB will hit your break point in your UEFI application's entry point and you can begin to debug with source code debugging.</span></p>
 
 
 Note:
