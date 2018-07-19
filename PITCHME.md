@@ -933,7 +933,7 @@ Note:
 <p align="right"><span class="gold" >Lab 5.2: Build Ovmf for IA32</span></p>
 <br>
 <p style="line-height:90%"><span style="font-size:0.8em">Open `~/src/edk2/OvmfPkg/OvmfPkgIa32.dsc` and add the application to the  (using IA32 )  at the end of the 
-   `[Components]` section.</span></p><br>
+   `[Components]` section.</span></p>
 ```php
   [Components]
    #  add at the end of the components section OvmfPkgIa32.dsc
@@ -1004,8 +1004,8 @@ Note:
 ---
 @title[Lab 5.5: Add a Debug Print]
 <p align="right"><span class="gold" >Lab 5.5: Add a Debug Print</span></p>
-<p style="line-height:90%"><span style="font-size:0.7em" >Add a DEBUG statement to your SampleApp.c application to get the entry point of your code. </span></p>
-<span style="font-size:0.5em" >Add the following DEBUG line just before the DEBUG statements from the previous lab:</span>
+<p style="line-height:90%"><span style="font-size:0.7em" >Add a DEBUG statement to your SampleApp.c application to get the entry point of your code. </span><br>
+<span style="font-size:0.5em" >Add the following DEBUG line just before the DEBUG statements from the previous lab:</span></p>
 ```C
 UefiMain (
 // . . .
@@ -1013,8 +1013,8 @@ UefiMain (
 	// ADD the following line
     DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
 ```
-<p style="line-height:90%"><span style="font-size:0.7em" >When you print out the debug.log again, the exact entry point for your code will show.</span></p>
-<span style="font-size:0.5em" >This is useful to double check symbols are fixed up to the correct line numbers in the source file.</span>
+<p style="line-height:90%"><span style="font-size:0.7em" >When you print out the debug.log again, the exact entry point for your code will show.</span><br>
+<span style="font-size:0.5em" >This is useful to double check symbols are fixed up to the correct line numbers in the source file.</span></p>
 ```
   Loading driver at 0x00006AEE000 EntryPoint=0x00006AEE756 SampleApp.efi
   InstallProtocolInterface: BC62157E-3E33-4FEC-9920-2D3B36D750DF 6F0FF10
@@ -1062,8 +1062,8 @@ Note:
 @title[Lab 5.7: Calculate Addresses]
 <p align="right"><span class="gold" >Lab 5.7: Calculate Addresses</span></p>
 <br>
-<p style="line-height:90%"><span style="font-size:0.7em" >We need to calculate our addresses for ".text" and ".data" section.</span></p>
-<p style="line-height:70%"><span style="font-size:0.5em" > The application is loaded under `0x00006AEE000` (loading driver point - <b>NOT Entrypoint</b>) and we know text and data offsets.</span></p>
+<p style="line-height:80%"><span style="font-size:0.7em" >We need to calculate our addresses for ".text" and ".data" section.</span><br>
+<span style="font-size:0.5em" > The application is loaded under `0x00006AEE000` (loading driver point - <b>NOT Entrypoint</b>) and we know text and data offsets.</span></p>
 ```
  text = 0x00006AEE000  +  0x00000240 = 0x06AEE240
  data = 0x00006AEE000  +  0x00000240 + 0x000028c0 = 0x06AF0B00 
@@ -1110,6 +1110,7 @@ Note:
 <p align="right"><span class="gold" >Lab 5.9: Attach GDB to QEMU</span></p>
 <br>
 <span style="font-size:0.7em" >Attach the GDB debugger to QEMU</span>
+
 ```
 (gdb) target remote localhost:1234
 Remote debugging using localhost:1234
@@ -1124,6 +1125,7 @@ Continuing.
 ```
 Fs0:\> SampleApp.efi
 ```
+
 <p style="line-height:90%"><span style="font-size:0.7em" >The GDB will hit your break point in your UEFI application's entry point and you can begin to debug with source code debugging.</span></p>
 
 
