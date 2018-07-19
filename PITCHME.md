@@ -1111,6 +1111,7 @@ Note:
 <br>
 <span style="font-size:0.7em" >Attach the GDB debugger to QEMU</span>
 
+
 ```
 (gdb) target remote localhost:1234
 Remote debugging using localhost:1234
@@ -1126,7 +1127,7 @@ Continuing.
 Fs0:\> SampleApp.efi
 ```
 
-<p style="line-height:90%"><span style="font-size:0.7em" >The GDB will hit your break point in your UEFI application's entry point and you can begin to debug with source code debugging.</span></p>
+<span style="font-size:0.7em" >The GDB will hit your break point in your UEFI application's entry point and you can begin to debug with source code debugging.</span>
 
 
 Note:
