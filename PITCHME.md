@@ -3,7 +3,7 @@
 <br><br><br><br><br>
 ## <span class="gold"   >UEFI & EDK II Training</span>
 
-#### EDK II Debugging 
+#### EDK II Debugging w/ Linux Lab
 
 <br>
 <span style="font-size:0.75em" ><a href='http://www.tianocore.org'>tianocore.org</a></span>
@@ -313,7 +313,7 @@ Note:
 ---
 @title[Lab 1: Add debug statments SampleApp 02]
 <p align="right"><span class="gold" >Lab 1: Add debug statments to SampleApp</span></p>
-<span style="font-size:0.7em" >Locate the `UefiMain` function. Then copy and paste the following code after the <span style="background-color: #101010">&nbsp;“`EFI_INPUT_KEY  KEY;`”</span> statement: and before the first <span style="background-color: #101010">&nbsp;`Print()` </span>statement </span>
+<p style="line-height:90%"><span style="font-size:0.7em" >Locate the `UefiMain` function. Then copy and paste the following code after the <span style="background-color: #101010">&nbsp;“`EFI_INPUT_KEY  KEY;`”</span> statement: and before the first <span style="background-color: #101010">&nbsp;`Print()` </span>statement </span></p>
 ```c
 DEBUG ((0xffffffff, "\n\nUEFI Base Training DEBUG DEMO\n") );
 DEBUG ((0xffffffff, "0xffffffff USING DEBUG ALL Mask Bits Set\n") );
@@ -390,7 +390,7 @@ Note:
 </pre>
 <span style="font-size:0.7em" >Run the application from the shell</span><br>
 <span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
-<span style="font-size:0.7em" >Check the contents of the debug.log file </span>
+<p style="line-height:90%"><span style="font-size:0.7em" >Check the contents of the debug.log file </span></p>
 <pre>
 ```
   bash$ cat debug.log
@@ -806,7 +806,7 @@ Note:
 </pre>
 <span style="font-size:0.7em" >Run the application from the shell</span><br>
 <span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
-<span style="font-size:0.7em" >See that the output from the Debug statements now goes to the QEMU console </span><br>
+<p style="line-height:90%"><span style="font-size:0.7em" >See that the output from the Debug statements now goes to the QEMU console </span><br></p>
 <br>
 <span style="font-size:0.8em" ><font color="yellow">Exit QEMU</font></span>
 </div>
@@ -872,7 +872,7 @@ Note:
 </pre>
 <span style="font-size:0.7em" >Run the application from the shell</span><br>
 <span style="font-size:0.5em" ><span style="background-color: #101010">&nbsp;<font color="yellow">`Shell> `&nbsp;</font>`SampleApp`&nbsp;</span></span><br>
-<span style="font-size:0.7em" >Check the contents of the serial.log file </span>
+<p style="line-height:90%"><span style="font-size:0.7em" >Check the contents of the serial.log file </span></p>
 <pre>
 ```
   bash$ cat serial.log
@@ -908,8 +908,8 @@ Note:
 @title[Lab 5.1: Update the Qemu Script]
 <p align="right"><span class="gold" >Lab 5.1: Update the Qemu Script</span></p>
 <br>
-<span style="font-size:0.8em" >Edit  the Linux shell script to run the QEMU from the run-ovmf directory and add  the option for GDB “-s” to 
-generate a symbol file and also use IA32 instead of x86_64</span><br>
+<p style="line-height:90%"><span style="font-size:0.8em" >Edit  the Linux shell script to run the QEMU from the run-ovmf directory and add  the option for GDB “-s” to 
+generate a symbol file and also use IA32 instead of x86_64</span></p><br>
 ```
  bash$ cd ~/run-ovmf
  bash$ gedit RunQemu.sh
@@ -932,8 +932,8 @@ Note:
 @title[Lab 5.2: Build Ovmf for IA32]
 <p align="right"><span class="gold" >Lab 5.2: Build Ovmf for IA32</span></p>
 <br>
-<span style="font-size:0.8em">Open `~/src/edk2/OvmfPkg/OvmfPkgIa32.dsc` and add the application to the  (using IA32 )  at the end of the 
-   `[Components]` section.</span><br>
+<p style="line-height:90%"><span style="font-size:0.8em">Open `~/src/edk2/OvmfPkg/OvmfPkgIa32.dsc` and add the application to the  (using IA32 )  at the end of the 
+   `[Components]` section.</span></p><br>
 ```php
   [Components]
    #  add at the end of the components section OvmfPkgIa32.dsc
@@ -986,12 +986,12 @@ Note:
 @title[Lab 5.4: Check debug.log ]
 <p align="right"><span class="gold" >Lab 5.4: Check debug.log</span></p>
 <br>
-<span style="font-size:0.7em" >Open <font color="yellow"><b>another</b></font> Terminal(2) Prompt in the `run-ovmf` directory and check the `debug.log` file.</span>
+<p style="line-height:90%"><span style="font-size:0.7em" >Open <font color="yellow"><b>another</b></font> Terminal(2) Prompt in the `run-ovmf` directory and check the `debug.log` file.</span></p>
 ```
 bash$ cd ~/run-ovmf
 bash$ cat debug.log
 ```
-<span style="font-size:0.7em" >See the line: `Loading driver at 0x00006AEE000` is the memory location where your UEFI Application is loaded. </span>
+<p style="line-height:90%"><span style="font-size:0.7em" >See the line: `Loading driver at 0x00006AEE000` is the memory location where your UEFI Application is loaded. </span></p>
 ```
  InstallProtocolInterface: 5B1B31A1-9562-11D2-8E3F-00A0C969723B 6F0F028
  Loading driver at 0x00006AEE000 EntryPoint=0x00006AEE756 SampleApp.efi
@@ -1004,7 +1004,7 @@ Note:
 ---
 @title[Lab 5.5: Add a Debug Print]
 <p align="right"><span class="gold" >Lab 5.5: Add a Debug Print</span></p>
-<span style="font-size:0.7em" >Add a DEBUG statement to your SampleApp.c application to get the entry point of your code. </span><br>
+<p style="line-height:90%"><span style="font-size:0.7em" >Add a DEBUG statement to your SampleApp.c application to get the entry point of your code. </span></p>
 <span style="font-size:0.5em" >Add the following DEBUG line just before the DEBUG statements from the previous lab:</span>
 ```C
 UefiMain (
@@ -1013,7 +1013,7 @@ UefiMain (
 	// ADD the following line
     DEBUG ((EFI_D_INFO, "My Entry point: 0x%08x\r\n", (CHAR16*)UefiMain )  );
 ```
-<span style="font-size:0.7em" >When you print out the debug.log again, the exact entry point for your code will show.</span><br>
+<p style="line-height:90%"><span style="font-size:0.7em" >When you print out the debug.log again, the exact entry point for your code will show.</span></p>
 <span style="font-size:0.5em" >This is useful to double check symbols are fixed up to the correct line numbers in the source file.</span>
 ```
   Loading driver at 0x00006AEE000 EntryPoint=0x00006AEE756 SampleApp.efi
@@ -1040,7 +1040,7 @@ bash$ gdb --tui
  (gdb) file SampleApp.efi
  Reading symbols from SampleApp.efi...(no debugging symbols found)...done. 
 ```
-<span style="font-size:0.7em" >Check where GDB has for ".text" and ".data" offsets with "`info files`" command.</span>
+<p style="line-height:90%"><span style="font-size:0.7em" >Check where GDB has for ".text" and ".data" offsets with "`info files`" command.</span></p>
 ```
  (gdb) info files
  Symbols from "/home/u-mypc/run-ovmf/hda-contents/SampleApp.efi".
@@ -1062,7 +1062,8 @@ Note:
 @title[Lab 5.7: Calculate Addresses]
 <p align="right"><span class="gold" >Lab 5.7: Calculate Addresses</span></p>
 <br>
-<span style="font-size:0.7em" >We need to calculate our addresses for ".text" and ".data" section.</span><span style="font-size:0.5em" > The application is loaded under `0x00006AEE000` (loading driver point - <b>NOT Entrypoint</b>) and we know text and data offsets.</span>
+<p style="line-height:90%"><span style="font-size:0.7em" >We need to calculate our addresses for ".text" and ".data" section.</span></p>
+<p style="line-height:70%"><span style="font-size:0.5em" > The application is loaded under `0x00006AEE000` (loading driver point - <b>NOT Entrypoint</b>) and we know text and data offsets.</span></p>
 ```
  text = 0x00006AEE000  +  0x00000240 = 0x06AEE240
  data = 0x00006AEE000  +  0x00000240 + 0x000028c0 = 0x06AF0B00 
@@ -1083,7 +1084,7 @@ Note:
 @title[Lab 5.8: Load the Symbols for SampleApp]
 <p align="right"><span class="gold" >Lab 5.8: Load the Symbols for SampleApp</span></p>
 <br>
-<span style="font-size:0.7em" >Load the symbols with the fixed up address using SampleApp output .debug file using the "`add-symbol-file`" command:</span>
+<p style="line-height:90%"><span style="font-size:0.7em" >Load the symbols with the fixed up address using SampleApp output .debug file using the "`add-symbol-file`" command:</span></p>
 ```
 (gdb) add-symbol-file SampleApp.debug 0x06AEE240 -s .data 0x06AF0B00 
 add symbol table from file "SampleApp.debug" at
@@ -1123,7 +1124,7 @@ Continuing.
 ```
 Fs0:\> SampleApp.efi
 ```
-<span style="font-size:0.7em" >The GDB will hit your break point in your UEFI application's entry point and you can begin to debug with source code debugging.</span>
+<p style="line-height:90%"><span style="font-size:0.7em" >The GDB will hit your break point in your UEFI application's entry point and you can begin to debug with source code debugging.</span></p>
 
 
 Note:
