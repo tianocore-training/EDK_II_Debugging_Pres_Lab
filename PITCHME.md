@@ -294,8 +294,8 @@ This lab uses code from a previous exercise as a starting point (refer to  Writi
 Note:
 
 ---
-@title[Lab 1: Add debug statments SampleApp]
-<p align="right"><span class="gold" >Lab 1: Add debug statments to SampleApp</span></p>
+@title[Lab 1: Add debug statements SampleApp]
+<p align="right"><span class="gold" >Lab 1: Add debug statements to SampleApp</span></p>
 <br>
 <ul>
   <li><span style="font-size:0.8em" >Open a Terminal Command Prompt (Cnt-Alt-T) and type cd ~/src/edk2<br></span>&nbsp;&nbsp;&nbsp;<span style="font-size:0.6em" ><span style="background-color: #101010">&nbsp;` bash$  .  edksetup.sh `&nbsp;</span> </span></li><br>
@@ -311,8 +311,8 @@ Note:
 Note:
 
 ---
-@title[Lab 1: Add debug statments SampleApp 02]
-<p align="right"><span class="gold" >Lab 1: Add debug statments to SampleApp</span></p>
+@title[Lab 1: Add debug statements SampleApp 02]
+<p align="right"><span class="gold" >Lab 1: Add debug statements to SampleApp</span></p>
 <p style="line-height:90%"><span style="font-size:0.7em" >Locate the `UefiMain` function. Then copy and paste the following code after the <span style="background-color: #101010">&nbsp;“`EFI_INPUT_KEY  KEY;`”</span> statement: and before the first <span style="background-color: #101010">&nbsp;`Print()` </span>statement </span></p>
 ```c
 DEBUG ((0xffffffff, "\n\nUEFI Base Training DEBUG DEMO\n") );
