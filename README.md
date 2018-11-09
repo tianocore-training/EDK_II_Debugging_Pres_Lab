@@ -32,4 +32,4 @@
 # EDK_II_Debugging_pres
 Tips and Tricks for Debugging using EDK II
 
-To see the Slides goto https://gitpitch.com/tianocore-training/EDK_II_Debugging_pres/master#/
+To see the Slides goto https://gitpitch.com/tianocore-training/EDK_II_Debugging_Pres_Lab/master#/
